@@ -1,0 +1,94 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.constraint.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        tools:layout_editor_absoluteX="0dp"
+        tools:layout_editor_absoluteY="68dp">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+            <TextView
+                android:id="@+id/textView2"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Rules"
+                android:textSize="40sp"
+                tools:layout_editor_absoluteX="143dp"
+                tools:layout_editor_absoluteY="16dp" />
+
+            <TextView
+                android:id="@+id/textView3"
+                style="@style/h2"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Original:"
+                android:textColor="#110A35"
+                android:textSize="25sp"
+                tools:layout_editor_absoluteX="0dp"
+                tools:layout_editor_absoluteY="117dp" />
+
+            <TextView
+                android:id="@+id/textView4"
+                style="@style/bodyText"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/gameOriginalRules"
+                android:textColor="#110A35"
+                tools:layout_editor_absoluteX="0dp"
+                tools:layout_editor_absoluteY="151dp" />
+
+            <TextView
+                android:id="@+id/textView7"
+                style="@style/h2"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="FirstVariantName:"
+                android:textColor="#110A35"
+                android:textSize="25sp"
+                tools:layout_editor_absoluteX="0dp"
+                tools:layout_editor_absoluteY="117dp" />
+
+            <TextView
+                android:id="@+id/textView6"
+                style="@style/bodyText"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/gameOneRules"
+                android:textColor="#110A35"
+                tools:layout_editor_absoluteX="0dp"
+                tools:layout_editor_absoluteY="151dp" />
+
+            <TextView
+                android:id="@+id/textView8"
+                style="@style/h2"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="SecondVariantName:"
+                android:textColor="#110A35"
+                android:textSize="25sp"
+                tools:layout_editor_absoluteX="0dp"
+                tools:layout_editor_absoluteY="117dp" />
+
+            <TextView
+                android:id="@+id/textView9"
+                style="@style/bodyText"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/gameTwoRules"
+                android:textColor="#110A35"
+                tools:layout_editor_absoluteX="0dp"
+                tools:layout_editor_absoluteY="151dp" />
+
+        </LinearLayout>
+    </ScrollView>
+
+</android.support.constraint.ConstraintLayout>

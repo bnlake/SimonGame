@@ -12,4 +12,7 @@
         If the user can repeat the sequence made by the game, the series becomes harder each time.
         Once the user fails, the game is over.
         We have created our app so people may enjoy some variation to the standard game. Play either the Random or Numerical variant.</string>
+    <string name="gameOriginalRules">Rules for original game....</string>
+    <string name="gameOneRules">Rules for game one....</string>
+    <string name="gameTwoRules">Rules for game two....</string>
 </resources>
