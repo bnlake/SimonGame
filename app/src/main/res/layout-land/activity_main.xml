@@ -15,13 +15,13 @@
         android:foregroundTintMode="screen"
         android:scaleType="matrix"/>
         <!-- TODO: Add an image
-        // android:src="@drawable/" -->
+        android:src="@drawable/circles_bg" -->
 
 
     <TextView
         android:id="@+id/textView"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_width="123dp"
+        android:layout_height="41dp"
         android:layout_marginEnd="8dp"
         android:layout_marginStart="8dp"
         android:layout_marginTop="8dp"
@@ -32,8 +32,9 @@
         android:shadowDy="15"
         android:shadowRadius="20"
         android:text="Simon"
+        android:textAlignment="center"
         android:textColor="@color/colorPrimaryPink"
-        android:textSize="68sp"
+        android:textSize="24sp"
         android:textStyle="bold"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -45,7 +46,7 @@
         android:layout_height="wrap_content"
         android:layout_marginEnd="64dp"
         android:layout_marginStart="64dp"
-        android:layout_marginTop="24dp"
+        android:layout_marginTop="10dp"
         android:text="Original"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -77,27 +78,25 @@
 
     <Button
         android:id="@+id/button_howToPlay"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:layout_marginEnd="100dp"
+        android:layout_width="192dp"
+        android:layout_height="37dp"
+        android:layout_marginEnd="8dp"
         android:layout_marginStart="100dp"
-        android:layout_marginTop="44dp"
+        android:layout_marginTop="8dp"
         android:text="Rules"
-        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintEnd_toStartOf="@+id/button_about"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/button_playMode2" />
 
     <Button
         android:id="@+id/button_about"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
+        android:layout_width="191dp"
+        android:layout_height="38dp"
         android:layout_marginEnd="100dp"
-        android:layout_marginStart="100dp"
         android:layout_marginTop="8dp"
         android:text="About"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/button_howToPlay" />
+        app:layout_constraintTop_toBottomOf="@+id/button_playMode3" />
 
     <LinearLayout
         android:layout_width="wrap_content"
@@ -105,7 +104,7 @@
         android:layout_marginBottom="8dp"
         android:layout_marginEnd="8dp"
         android:layout_marginStart="8dp"
-        android:layout_marginTop="16dp"
+        android:layout_marginTop="8dp"
         android:background="#c0c0c0 "
         android:orientation="vertical"
         android:padding="8dp"
