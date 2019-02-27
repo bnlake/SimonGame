@@ -25,9 +25,9 @@
                 tools:layout_editor_absoluteX="143dp"
                 tools:layout_editor_absoluteY="16dp" />
 
+            <!--style="@style/h2"-->
             <TextView
                 android:id="@+id/textView3"
-                style="@style/h2"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:text="Original:"
@@ -36,9 +36,9 @@
                 tools:layout_editor_absoluteX="0dp"
                 tools:layout_editor_absoluteY="117dp" />
 
+            <!--style="@style/bodyText"-->
             <TextView
                 android:id="@+id/textView4"
-                style="@style/bodyText"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:text="@string/gameOriginalRules"
@@ -46,9 +46,9 @@
                 tools:layout_editor_absoluteX="0dp"
                 tools:layout_editor_absoluteY="151dp" />
 
+            <!--style="@style/h2"-->
             <TextView
                 android:id="@+id/textView7"
-                style="@style/h2"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:text="FirstVariantName:"
@@ -57,9 +57,9 @@
                 tools:layout_editor_absoluteX="0dp"
                 tools:layout_editor_absoluteY="117dp" />
 
+            <!--style="@style/bodyText"-->
             <TextView
                 android:id="@+id/textView6"
-                style="@style/bodyText"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:text="@string/gameOneRules"
@@ -67,9 +67,9 @@
                 tools:layout_editor_absoluteX="0dp"
                 tools:layout_editor_absoluteY="151dp" />
 
+            <!--style="@style/h2"-->
             <TextView
                 android:id="@+id/textView8"
-                style="@style/h2"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:text="SecondVariantName:"
@@ -78,9 +78,9 @@
                 tools:layout_editor_absoluteX="0dp"
                 tools:layout_editor_absoluteY="117dp" />
 
+            <!--style="@style/bodyText"-->
             <TextView
                 android:id="@+id/textView9"
-                style="@style/bodyText"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:text="@string/gameTwoRules"
