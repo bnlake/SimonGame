@@ -27,7 +27,6 @@
 
             <TextView
                 android:id="@+id/textView3"
-                style="@style/h2"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:text="Original:"
@@ -38,7 +37,6 @@
 
             <TextView
                 android:id="@+id/textView4"
-                style="@style/bodyText"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:text="@string/gameOriginalRules"
@@ -48,7 +46,6 @@
 
             <TextView
                 android:id="@+id/textView7"
-                style="@style/h2"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:text="FirstVariantName:"
@@ -59,7 +56,6 @@
 
             <TextView
                 android:id="@+id/textView6"
-                style="@style/bodyText"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:text="@string/gameOneRules"
@@ -69,7 +65,6 @@
 
             <TextView
                 android:id="@+id/textView8"
-                style="@style/h2"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:text="SecondVariantName:"
@@ -80,7 +75,6 @@
 
             <TextView
                 android:id="@+id/textView9"
-                style="@style/bodyText"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:text="@string/gameTwoRules"
