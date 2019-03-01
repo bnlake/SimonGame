@@ -7,19 +7,36 @@ import android.os.Bundle;
 import android.util.Log;
 
 import java.util.HashSet;
+import java.util.List;
 import java.util.Set;
 
-public class clsSoundEffect extends Activity
+public class clsGameSoundEffects extends Activity
 {
 	private final int MAX_AUDIO_STREAMS = 4;
+	public int SOUND_EFFECT_BLUE;
+	public int SOUND_EFFECT_GREEN;
+	public int SOUND_EFFECT_RED;
+	public int SOUND_EFFECT_YELLOW;
 	private SoundPool soundPool;
 	private Set<Integer> soundsLoaded;
+	private List<Integer> rawSoundEffects;
 
-	@Override
-	protected void onCreate(Bundle savedInstanceState)
+	/**
+	 * Class Constructor. No overloads to ensure this always runs
+	 */
+	public clsGameSoundEffects()
 	{
-		super.onCreate(savedInstanceState);
 		soundsLoaded = new HashSet<Integer>();
+		// Obtain the ID's of the raw audio files
+		SOUND_EFFECT_BLUE = R.raw.blue;
+		SOUND_EFFECT_GREEN = R.raw.green;
+		SOUND_EFFECT_RED = R.raw.red;
+		SOUND_EFFECT_YELLOW = R.raw.yellow;
+		// Add the ids to a list to easily identify a sound file
+		rawSoundEffects.add(SOUND_EFFECT_BLUE);
+		rawSoundEffects.add(SOUND_EFFECT_GREEN);
+		rawSoundEffects.add(SOUND_EFFECT_RED);
+		rawSoundEffects.add(SOUND_EFFECT_YELLOW);
 	}
 
 	@Override
@@ -51,11 +68,6 @@ public class clsSoundEffect extends Activity
 				}
 			}
 		});
-
-		final int redId = soundPool.load(this, R.raw.red, 1);
-		final int greenId = soundPool.load(this, R.raw.green, 1);
-		final int blueId = soundPool.load(this, R.raw.blue, 1);
-		final int yellowId = soundPool.load(this, R.raw.yellow, 1);
 
 		// TODO SET ONCLICKLISTENERS TO SOMETHING AND PLAY SOUND
 	}
