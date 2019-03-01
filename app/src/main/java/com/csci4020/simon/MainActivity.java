@@ -4,21 +4,19 @@ import android.app.Activity;
 import android.os.Bundle;
 import android.view.View;
 
-public class MainActivity extends Activity {
+public class MainActivity extends clsGame {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.testlayout);
 
-        final clsGameSoundEffects gameSoundEffects = new clsGameSoundEffects();
-
         findViewById(R.id.btnBlue).setOnClickListener(new View.OnClickListener()
         {
             @Override
             public void onClick(View view)
             {
-                gameSoundEffects.playSound(gameSoundEffects.SOUND_EFFECT_BLUE);
+                playSound(SOUND_EFFECT_BLUE);
             }
         });
         findViewById(R.id.btnGreen).setOnClickListener(new View.OnClickListener()
@@ -26,7 +24,7 @@ public class MainActivity extends Activity {
             @Override
             public void onClick(View view)
             {
-                gameSoundEffects.playSound(gameSoundEffects.SOUND_EFFECT_GREEN);
+                playSound(SOUND_EFFECT_GREEN);
             }
         });
         findViewById(R.id.btnRed).setOnClickListener(new View.OnClickListener()
@@ -34,7 +32,7 @@ public class MainActivity extends Activity {
             @Override
             public void onClick(View view)
             {
-                gameSoundEffects.playSound(gameSoundEffects.SOUND_EFFECT_RED);
+                playSound(SOUND_EFFECT_RED);
             }
         });
         findViewById(R.id.btnYellow).setOnClickListener(new View.OnClickListener()
@@ -42,7 +40,7 @@ public class MainActivity extends Activity {
             @Override
             public void onClick(View view)
             {
-                gameSoundEffects.playSound(gameSoundEffects.SOUND_EFFECT_YELLOW);
+                playSound(SOUND_EFFECT_YELLOW);
             }
         });
     }

@@ -7,10 +7,9 @@ import android.os.Bundle;
 import android.util.Log;
 
 import java.util.HashSet;
-import java.util.List;
 import java.util.Set;
 
-public class clsGameSoundEffects extends Activity
+public class clsGame extends Activity
 {
 	private final int MAX_AUDIO_STREAMS = 4;
 	public int SOUND_EFFECT_BLUE;
@@ -19,24 +18,13 @@ public class clsGameSoundEffects extends Activity
 	public int SOUND_EFFECT_YELLOW;
 	private SoundPool soundPool;
 	private Set<Integer> soundsLoaded;
-	private List<Integer> rawSoundEffects;
 
-	/**
-	 * Class Constructor. No overloads to ensure this always runs
-	 */
-	public clsGameSoundEffects()
+	@Override
+	protected void onCreate(Bundle savedInstanceState)
 	{
+		super.onCreate(savedInstanceState);
+		// A unique set of integers that correlates to loaded sound ids
 		soundsLoaded = new HashSet<Integer>();
-		// Obtain the ID's of the raw audio files
-		SOUND_EFFECT_BLUE = R.raw.blue;
-		SOUND_EFFECT_GREEN = R.raw.green;
-		SOUND_EFFECT_RED = R.raw.red;
-		SOUND_EFFECT_YELLOW = R.raw.yellow;
-		// Add the ids to a list to easily identify a sound file
-		rawSoundEffects.add(SOUND_EFFECT_BLUE);
-		rawSoundEffects.add(SOUND_EFFECT_GREEN);
-		rawSoundEffects.add(SOUND_EFFECT_RED);
-		rawSoundEffects.add(SOUND_EFFECT_YELLOW);
 	}
 
 	@Override
@@ -44,6 +32,7 @@ public class clsGameSoundEffects extends Activity
 	{
 		super.onResume();
 
+		// Simply identify that these sounds are used in a game
 		AudioAttributes.Builder attrBuilder = new AudioAttributes.Builder();
 		attrBuilder.setUsage(AudioAttributes.USAGE_GAME);
 
@@ -59,7 +48,7 @@ public class clsGameSoundEffects extends Activity
 			{
 				if (status == 0)
 				{
-					// success
+					// success. Sound was loaded into memory. Store the loaded sound id
 					soundsLoaded.add(sampleId);
 				}
 				else
@@ -69,7 +58,11 @@ public class clsGameSoundEffects extends Activity
 			}
 		});
 
-		// TODO SET ONCLICKLISTENERS TO SOMETHING AND PLAY SOUND
+		// Obtain the ID's of the raw audio files for easy access
+		SOUND_EFFECT_BLUE = soundPool.load(this, R.raw.blue, 1);
+		SOUND_EFFECT_GREEN = soundPool.load(this, R.raw.green, 1);
+		SOUND_EFFECT_RED = soundPool.load(this, R.raw.red, 1);
+		SOUND_EFFECT_YELLOW = soundPool.load(this, R.raw.yellow, 1);
 	}
 
 	/**
@@ -84,12 +77,12 @@ public class clsGameSoundEffects extends Activity
 			soundPool.release();
 			soundPool = null;
 
-			soundsLoaded.clear();
+			this.soundsLoaded.clear();
 		}
 	}
 
 	/**
-	 * Plays the sound identified by the sound ID
+	 * Plays the sound identified by the loaded sound ID
 	 *
 	 * @param soundId int
 	 */
@@ -97,7 +90,7 @@ public class clsGameSoundEffects extends Activity
 	{
 		if (soundsLoaded.contains(soundId))
 		{
-			soundPool.play(soundId, 1.0f, 1.0f, 0, 0, 1.0f);
+			this.soundPool.play(soundId, 1.0f, 1.0f, 0, 0, 1.0f);
 		}
 	}
 }
