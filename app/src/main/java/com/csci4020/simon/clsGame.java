@@ -18,6 +18,7 @@ public class clsGame extends Activity
 	public int SOUND_EFFECT_YELLOW;
 	private SoundPool soundPool;
 	private Set<Integer> soundsLoaded;
+	public float GAME_SPEED = 1.0f;
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState)
