@@ -1,5 +1,6 @@
 package com.csci4020.simon;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 
@@ -46,5 +47,32 @@ public class ClassicSimon extends clsGame
 				playSound(SOUND_EFFECT_YELLOW);
 			}
 		});
+
+		findViewById(R.id.btn_restartgame).setOnClickListener(new View.OnClickListener() {
+			@Override
+			public void onClick(View v) {
+
+				restartGame();
+			}
+		});
+
+		findViewById(R.id.btn_mainmenu).setOnClickListener(new View.OnClickListener() {
+			@Override
+			public void onClick(View v) {
+
+				returnToMainMenu();
+			}
+		});
 	}
+
+	private void restartGame() {
+
+	}
+
+	private void returnToMainMenu() {
+
+		startActivity(new Intent(getApplicationContext(), MainActivity.class));
+	}
+
+
 }

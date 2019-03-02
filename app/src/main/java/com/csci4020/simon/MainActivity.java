@@ -21,21 +21,35 @@ public class MainActivity extends Activity
             @Override
             public void onClick(View v) {
 
-                gotoRules();
+                goToRules();
             }
         });
+
+		findViewById(R.id.button_about).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+                goToAbout();
+            }
+        });
+
 	}
 
 	@Override
 	public void onClick(View view)
 	{
-		Intent intent = new Intent(getApplicationContext(),ClassicSimon.class);
-		startActivity(intent);
+
+        startActivity(new Intent(getApplicationContext(), ClassicSimon.class));
 	}
 
-	private void gotoRules() {
+	private void goToRules() {
 
-	    Intent intent = new Intent(getApplicationContext(), RulesActivity.class);
-	    startActivity(intent);
+        startActivity(new Intent(getApplicationContext(), RulesActivity.class));
+
+    }
+
+    private void goToAbout() {
+
+        startActivity(new Intent(getApplicationContext(), AboutActivity.class));
     }
 }
