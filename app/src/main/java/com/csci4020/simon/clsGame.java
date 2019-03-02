@@ -6,28 +6,58 @@ import android.media.SoundPool;
 import android.os.Bundle;
 import android.util.Log;
 
+import java.util.ArrayList;
 import java.util.HashSet;
+import java.util.List;
 import java.util.Set;
 
 public class clsGame extends Activity
 {
+	/**
+	 * GLOBAL Variable to identify the maximum sound effects playable at one time
+	 */
 	private final int MAX_AUDIO_STREAMS = 4;
+
+
+	/**
+	 * Integer ID of loaded sound effects in a sound pool
+	 */
+	private Set<Integer> soundsLoaded;
 	public int SOUND_EFFECT_BLUE;
 	public int SOUND_EFFECT_GREEN;
 	public int SOUND_EFFECT_RED;
 	public int SOUND_EFFECT_YELLOW;
+
+
+	/**
+	 * Sound pool to manage game sound effects
+	 */
 	private SoundPool soundPool;
-	private Set<Integer> soundsLoaded;
+
+
+	/**
+	 * Game speed multiplier. Can be used to slow down or speed up a game
+	 */
 	public float GAME_SPEED = 1.0f;
 
+
+	/**
+	 * On Create. Ensure global variables are instantiated
+	 * @param savedInstanceState
+	 */
 	@Override
 	protected void onCreate(Bundle savedInstanceState)
 	{
 		super.onCreate(savedInstanceState);
 		// A unique set of integers that correlates to loaded sound ids
 		soundsLoaded = new HashSet<Integer>();
+		generatedGameSequence = new ArrayList<>();
 	}
 
+
+	/**
+	 * onResume always called so use this to deal with managing preparing/resuming a game
+	 */
 	@Override
 	protected void onResume()
 	{
@@ -66,6 +96,7 @@ public class clsGame extends Activity
 		SOUND_EFFECT_YELLOW = soundPool.load(this, R.raw.yellow, 1);
 	}
 
+
 	/**
 	 * Need to stop any sounds effects if the user leaves the app for any reason
 	 */
@@ -81,6 +112,7 @@ public class clsGame extends Activity
 			this.soundsLoaded.clear();
 		}
 	}
+
 
 	/**
 	 * Plays the sound identified by the loaded sound ID
