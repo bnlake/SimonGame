@@ -12,10 +12,10 @@ import java.util.Set;
 public class clsGame extends Activity
 {
 	private final int MAX_AUDIO_STREAMS = 4;
-	public int SOUND_EFFECT_BLUE;
-	public int SOUND_EFFECT_GREEN;
-	public int SOUND_EFFECT_RED;
-	public int SOUND_EFFECT_YELLOW;
+	public static int SOUND_EFFECT_BLUE;
+	public static int SOUND_EFFECT_GREEN;
+	public static int SOUND_EFFECT_RED;
+	public static int SOUND_EFFECT_YELLOW;
 	private SoundPool soundPool;
 	private Set<Integer> soundsLoaded;
 	public float GAME_SPEED = 1.0f;
@@ -87,7 +87,7 @@ public class clsGame extends Activity
 	 *
 	 * @param soundId int
 	 */
-	protected void playSound(int soundId)
+	public void playSound(int soundId)
 	{
 		if (soundsLoaded.contains(soundId))
 		{
