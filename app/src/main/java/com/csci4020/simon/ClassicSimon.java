@@ -1,6 +1,5 @@
 package com.csci4020.simon;
 
-import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 
@@ -46,18 +45,6 @@ public class ClassicSimon extends clsGame
 			{
 				playSound(SOUND_EFFECT_YELLOW);
 			}
-		});
-		setContentView(R.layout.activity_main);
-
-		findViewById(R.id.button_play).setOnClickListener(new View.OnClickListener()
-		{
-			@Override
-			public void onClick(View v)
-			{
-
-				startActivity(new Intent(getApplicationContext(), ClassicSimon.class));
-			}
-
 		});
 	}
 }
