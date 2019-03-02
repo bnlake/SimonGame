@@ -51,7 +51,6 @@ public class clsGame extends Activity
 		super.onCreate(savedInstanceState);
 		// A unique set of integers that correlates to loaded sound ids
 		soundsLoaded = new HashSet<Integer>();
-		generatedGameSequence = new ArrayList<>();
 	}
 
 
