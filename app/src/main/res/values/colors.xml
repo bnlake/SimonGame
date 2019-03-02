@@ -4,4 +4,10 @@
     <color name="btnGreen">#78B435</color>
     <color name="btnBlue">#1A67EE</color>
     <color name="btnYellow">#E4C51C</color>
+
+    <color name="colorBackgroundLight">#FBFCF9</color>
+    <color name="colorBackgroundDark">#EEF0E6</color>
+    <color name="colorWhite">#FFF</color>
+    <color name="colorPrimaryPink">#ffb6b9</color>
+    <color name="colorPrimaryBlue">#90a9cd</color>
 </resources>
