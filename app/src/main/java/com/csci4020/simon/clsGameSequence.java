@@ -4,7 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
 
-public class clsGameSequence
+public abstract class clsGameSequence
 {
 	/**
 	 * Use characters to identify the different buttons that exist in a game
@@ -93,10 +93,7 @@ public class clsGameSequence
 	public boolean addUserGuess(char x)
 	{
 		userGuessSequence.add(x);
-		if (generatedGameSequence.get(userGuessSequence.size() - 1) == userGuessSequence.get(userGuessSequence.size() - 1))
-			return true;
-		else
-			return false;
+		return (generatedGameSequence.get(userGuessSequence.size() - 1) == userGuessSequence.get(userGuessSequence.size() - 1));
 	}
 
 

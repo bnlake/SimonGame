@@ -5,13 +5,14 @@ import android.media.AudioAttributes;
 import android.media.SoundPool;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.View;
 
 import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
 
-public class clsGame extends Activity
+public abstract class clsGame extends Activity
 {
 	/**
 	 * GLOBAL Variable to identify the maximum sound effects playable at one time
@@ -22,30 +23,30 @@ public class clsGame extends Activity
 	/**
 	 * Integer ID of loaded sound effects in a sound pool
 	 */
-	private Set<Integer> soundsLoaded;
-	public int SOUND_EFFECT_BLUE;
-	public int SOUND_EFFECT_GREEN;
-	public int SOUND_EFFECT_RED;
-	public int SOUND_EFFECT_YELLOW;
+	private static Set<Integer> soundsLoaded;
+	public static int SOUND_EFFECT_BLUE;
+	public static int SOUND_EFFECT_GREEN;
+	public static int SOUND_EFFECT_RED;
+	public static int SOUND_EFFECT_YELLOW;
 
 
 	/**
 	 * Sound pool to manage game sound effects
 	 */
-	private SoundPool soundPool;
+	private static SoundPool soundPool;
 
 
 	/**
 	 * Game Time. Is the basis for button highlight, pause, and wait for user input.
 	 * Time is in milliseconds
 	 */
-	private int GAME_INTERVAL_TIME = 300;
+	protected int GAME_INTERVAL_TIME = 300;
 
 
 	/**
 	 * Game speed multiplier. Can be used to slow down or speed up a game
 	 */
-	public float GAME_SPEED = 1.0f;
+	protected float GAME_SPEED = 1.0f;
 
 
 	/**
@@ -132,5 +133,22 @@ public class clsGame extends Activity
 		{
 			this.soundPool.play(soundId, 1.0f, 1.0f, 0, 0, 1.0f);
 		}
+	}
+
+
+	/**
+	 * Change the game speed multiplier. Must be a float
+	 *
+	 * @param GAME_SPEED float (e.g. 1.2f)
+	 */
+	public void setGameSpeed(float GAME_SPEED)
+	{
+		this.GAME_SPEED = GAME_SPEED;
+	}
+
+
+	public void highlightButton(View button, int highlightColor)
+	{
+
 	}
 }
