@@ -36,6 +36,13 @@ public class clsGame extends Activity
 
 
 	/**
+	 * Game Time. Is the basis for button highlight, pause, and wait for user input.
+	 * Time is in milliseconds
+	 */
+	private int GAME_INTERVAL_TIME = 300;
+
+
+	/**
 	 * Game speed multiplier. Can be used to slow down or speed up a game
 	 */
 	public float GAME_SPEED = 1.0f;
@@ -43,6 +50,7 @@ public class clsGame extends Activity
 
 	/**
 	 * On Create. Ensure global variables are instantiated
+	 *
 	 * @param savedInstanceState
 	 */
 	@Override
