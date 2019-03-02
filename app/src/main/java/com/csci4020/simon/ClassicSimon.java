@@ -7,11 +7,12 @@ import android.view.View;
 public class ClassicSimon extends clsGame
 {
 
+    private int score;
+
 	@Override
 	protected void onCreate(Bundle savedInstanceState)
 	{
 		super.onCreate(savedInstanceState);
-
 		setContentView(R.layout.activity_game);
 
 
@@ -65,6 +66,22 @@ public class ClassicSimon extends clsGame
 		});
 	}
 
+	private void setUpSounds() {
+
+        int sounds[] = {
+                clsGame.SOUND_EFFECT_BLUE, clsGame.SOUND_EFFECT_GREEN, clsGame.SOUND_EFFECT_RED, clsGame.SOUND_EFFECT_YELLOW
+        };
+    }
+
+    private void startGame() {
+
+	    score = 0;
+    }
+
+    private void gameOver() {
+
+    }
+
 	private void restartGame() {
 
 	}
@@ -73,6 +90,7 @@ public class ClassicSimon extends clsGame
 
 		startActivity(new Intent(getApplicationContext(), MainActivity.class));
 	}
+
 
 
 }
