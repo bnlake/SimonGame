@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <color name="btnRed">#B71C1C</color>
-    <color name="btnGreen">#78B435</color>
-    <color name="btnBlue">#1A67EE</color>
+    <color name="btnRed">#b71c1c</color>
+    <color name="btnGreen">#78b435</color>
+    <color name="btnBlue">#1a67ee</color>
     <color name="btnYellow">#E4C51C</color>
 
     <color name="colorBackgroundLight">#FBFCF9</color>

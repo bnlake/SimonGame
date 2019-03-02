@@ -76,7 +76,7 @@
         app:layout_constraintTop_toBottomOf="@+id/button_play" />
 
     <Button
-        android:id="@+id/button_howToPlay"
+        android:id="@+id/button_rules"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginEnd="100dp"
@@ -97,7 +97,7 @@
         android:text="About"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/button_howToPlay" />
+        app:layout_constraintTop_toBottomOf="@+id/button_rules" />
 
     <LinearLayout
         android:layout_width="wrap_content"

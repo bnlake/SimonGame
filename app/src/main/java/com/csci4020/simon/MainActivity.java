@@ -17,6 +17,13 @@ public class MainActivity extends Activity
 
 		// TODO CREATE ANON INNER CLASS INSTEAD OF USING THIS CURRENT CLASS ONCLICKLISTENER
 		findViewById(R.id.button_play).setOnClickListener(this);
+		findViewById(R.id.button_rules).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+                gotoRules();
+            }
+        });
 	}
 
 	@Override
@@ -25,4 +32,10 @@ public class MainActivity extends Activity
 		Intent intent = new Intent(getApplicationContext(),ClassicSimon.class);
 		startActivity(intent);
 	}
+
+	private void gotoRules() {
+
+	    Intent intent = new Intent(getApplicationContext(), RulesActivity.class);
+	    startActivity(intent);
+    }
 }
