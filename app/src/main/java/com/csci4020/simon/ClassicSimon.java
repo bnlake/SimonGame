@@ -9,9 +9,9 @@ import android.widget.Toast;
 public class ClassicSimon extends clsGame
 {
 
-    SharedPreferences sharedPreferences;
-    private int score;
-    private boolean mute = false;
+	SharedPreferences sharedPreferences;
+	private int score;
+	private boolean mute = false;
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState)
@@ -19,53 +19,27 @@ public class ClassicSimon extends clsGame
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_game);
 
-		findViewById(R.id.btnBlue).setOnClickListener(new View.OnClickListener()
+		// Create the listeners for game buttons. Assign sound effect appropriately
+		findViewById(R.id.btnBlue).setOnClickListener(new clsGameButton(SOUND_EFFECT_BLUE));
+		findViewById(R.id.btnGreen).setOnClickListener(new clsGameButton(SOUND_EFFECT_GREEN));
+		findViewById(R.id.btnRed).setOnClickListener(new clsGameButton(SOUND_EFFECT_RED));
+		findViewById(R.id.btnYellow).setOnClickListener(new clsGameButton(SOUND_EFFECT_YELLOW));
+
+		findViewById(R.id.btn_restartgame).setOnClickListener(new View.OnClickListener()
 		{
 			@Override
-			public void onClick(View view)
+			public void onClick(View v)
 			{
-				playSound(SOUND_EFFECT_BLUE);
-			}
-		});
-
-		findViewById(R.id.btnGreen).setOnClickListener(new View.OnClickListener()
-		{
-			@Override
-			public void onClick(View view)
-			{
-				playSound(SOUND_EFFECT_GREEN);
-			}
-		});
-
-		findViewById(R.id.btnRed).setOnClickListener(new View.OnClickListener()
-		{
-			@Override
-			public void onClick(View view)
-			{
-				playSound(SOUND_EFFECT_RED);
-			}
-		});
-
-		findViewById(R.id.btnYellow).setOnClickListener(new View.OnClickListener()
-		{
-			@Override
-			public void onClick(View view)
-			{
-				playSound(SOUND_EFFECT_YELLOW);
-			}
-		});
-
-		findViewById(R.id.btn_restartgame).setOnClickListener(new View.OnClickListener() {
-			@Override
-			public void onClick(View v) {
 
 				restartGame();
 			}
 		});
 
-		findViewById(R.id.btn_mainmenu).setOnClickListener(new View.OnClickListener() {
+		findViewById(R.id.btn_mainmenu).setOnClickListener(new View.OnClickListener()
+		{
 			@Override
-			public void onClick(View v) {
+			public void onClick(View v)
+			{
 
 				returnToMainMenu();
 			}
@@ -73,38 +47,65 @@ public class ClassicSimon extends clsGame
 	}
 
 
-    /**
-     * Change text when user presses a button and check if a player has win.
-     */
-	private void setUpSounds() {
+	/**
+	 * Change text when user presses a button and check if a player has win.
+	 */
+	private void setUpSounds()
+	{
 
-	    // If we're playing Surprise, don't need sound.
-	    if (mute) {
+		// If we're playing Surprise, don't need sound.
+		if (mute)
+		{
 
-	        return;
-        }
+			return;
+		}
 
-        // TODO: Calling clsGame onResume() to set up the SoundPool
-        
-    }
+		// TODO: Calling clsGame onResume() to set up the SoundPool
 
-    private void startGame() {
-
-	    score = 0;
-    }
-
-    private void gameOver() {
-
-        Toast.makeText(this, "Game Over!", Toast.LENGTH_SHORT).show();
-    }
-
-	private void restartGame() {
-
-	    score = 0;
 	}
 
-	private void returnToMainMenu() {
+	private void startGame()
+	{
+
+		score = 0;
+	}
+
+	private void gameOver()
+	{
+
+		Toast.makeText(this, "Game Over!", Toast.LENGTH_SHORT).show();
+	}
+
+	private void restartGame()
+	{
+
+		score = 0;
+	}
+
+	private void returnToMainMenu()
+	{
 
 		startActivity(new Intent(getApplicationContext(), MainActivity.class));
+	}
+
+
+	/**
+	 * Class to minimize code when assigning onclicklisteners to game buttons
+	 * Inner class so it can utilize the methods from superclass
+	 */
+	class clsGameButton implements View.OnClickListener
+	{
+		private int assignedSoundEffect;
+
+		public clsGameButton(int assignedSoundEffect)
+		{
+			this.assignedSoundEffect = assignedSoundEffect;
+		}
+
+		@Override
+		public void onClick(View view)
+		{
+			playSound(assignedSoundEffect);
+		}
 	}
 }

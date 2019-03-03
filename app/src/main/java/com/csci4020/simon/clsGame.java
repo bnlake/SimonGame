@@ -9,17 +9,48 @@ import android.util.Log;
 import java.util.HashSet;
 import java.util.Set;
 
-public class clsGame extends Activity
+public abstract class clsGame extends Activity
 {
+	/**
+	 * GLOBAL Variable to identify the maximum sound effects playable at one time
+	 */
 	private final int MAX_AUDIO_STREAMS = 4;
+
+
+	/**
+	 * Integer ID of loaded sound effects in a sound pool
+	 */
+	private static Set<Integer> soundsLoaded;
 	public static int SOUND_EFFECT_BLUE;
 	public static int SOUND_EFFECT_GREEN;
 	public static int SOUND_EFFECT_RED;
 	public static int SOUND_EFFECT_YELLOW;
-	private SoundPool soundPool;
-	private Set<Integer> soundsLoaded;
-	public float GAME_SPEED = 1.0f;
 
+
+	/**
+	 * Sound pool to manage game sound effects
+	 */
+	private static SoundPool soundPool;
+
+
+	/**
+	 * Game Time. Is the basis for button highlight, pause, and wait for user input.
+	 * Time is in milliseconds
+	 */
+	protected int GAME_INTERVAL_TIME = 300;
+
+
+	/**
+	 * Game speed multiplier. Can be used to slow down or speed up a game
+	 */
+	protected float GAME_SPEED = 1.0f;
+
+
+	/**
+	 * On Create. Ensure global variables are instantiated
+	 *
+	 * @param savedInstanceState default
+	 */
 	@Override
 	protected void onCreate(Bundle savedInstanceState)
 	{
@@ -28,6 +59,10 @@ public class clsGame extends Activity
 		soundsLoaded = new HashSet<Integer>();
 	}
 
+
+	/**
+	 * onResume always called so use this to deal with managing preparing/resuming a game
+	 */
 	@Override
 	protected void onResume()
 	{
@@ -66,6 +101,7 @@ public class clsGame extends Activity
 		SOUND_EFFECT_YELLOW = soundPool.load(this, R.raw.yellow, 1);
 	}
 
+
 	/**
 	 * Need to stop any sounds effects if the user leaves the app for any reason
 	 */
@@ -78,9 +114,10 @@ public class clsGame extends Activity
 			soundPool.release();
 			soundPool = null;
 
-			this.soundsLoaded.clear();
+			soundsLoaded.clear();
 		}
 	}
+
 
 	/**
 	 * Plays the sound identified by the loaded sound ID
@@ -91,7 +128,18 @@ public class clsGame extends Activity
 	{
 		if (soundsLoaded.contains(soundId))
 		{
-			this.soundPool.play(soundId, 1.0f, 1.0f, 0, 0, 1.0f);
+			soundPool.play(soundId, 1.0f, 1.0f, 0, 0, 1.0f);
 		}
+	}
+
+
+	/**
+	 * Change the game speed multiplier. Must be a float
+	 *
+	 * @param GAME_SPEED float (e.g. 1.2f)
+	 */
+	public void setGameSpeed(float GAME_SPEED)
+	{
+		this.GAME_SPEED = GAME_SPEED;
 	}
 }
