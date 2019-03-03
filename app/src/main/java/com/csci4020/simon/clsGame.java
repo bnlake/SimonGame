@@ -1,11 +1,13 @@
 package com.csci4020.simon;
 
 import android.app.Activity;
+import android.graphics.ColorFilter;
 import android.media.AudioAttributes;
 import android.media.SoundPool;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
+import android.widget.ImageButton;
 
 import java.util.ArrayList;
 import java.util.HashSet;
@@ -147,8 +149,9 @@ public abstract class clsGame extends Activity
 	}
 
 
-	public void highlightButton(View button, int highlightColor)
+	public void highlightButton (ImageButton button, int highlightColor)
 	{
-
+		ColorFilter currentBackgroundTint;
+		currentBackgroundTint = button.getColorFilter();
 	}
 }
