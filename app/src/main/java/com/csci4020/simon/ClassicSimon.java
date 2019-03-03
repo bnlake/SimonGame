@@ -20,11 +20,6 @@ public class ClassicSimon extends clsGame
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_game);
 
-		// Create the listeners for game buttons. Assign sound effect appropriately
-		findViewById(R.id.btnBlue).setOnClickListener(new clsGameButton(SOUND_EFFECT_BLUE));
-		findViewById(R.id.btnGreen).setOnClickListener(new clsGameButton(SOUND_EFFECT_GREEN));
-		findViewById(R.id.btnRed).setOnClickListener(new clsGameButton(SOUND_EFFECT_RED));
-		findViewById(R.id.btnYellow).setOnClickListener(new clsGameButton(SOUND_EFFECT_YELLOW));
 
 		findViewById(R.id.btn_restartgame).setOnClickListener(new View.OnClickListener()
 		{
@@ -47,6 +42,17 @@ public class ClassicSimon extends clsGame
 		});
 	}
 
+	@Override
+	protected void onResume()
+	{
+		super.onResume();
+		// Create the listeners for game buttons. Assign sound effect appropriately
+		// Need to put these in onResume since the soundpool wouldn't have been created until now
+		findViewById(R.id.btnBlue).setOnClickListener(new clsGameButton(SOUND_EFFECT_BLUE));
+		findViewById(R.id.btnGreen).setOnClickListener(new clsGameButton(SOUND_EFFECT_GREEN));
+		findViewById(R.id.btnRed).setOnClickListener(new clsGameButton(SOUND_EFFECT_RED));
+		findViewById(R.id.btnYellow).setOnClickListener(new clsGameButton(SOUND_EFFECT_YELLOW));
+	}
 
 	/**
 	 * Change text when user presses a button and check if a player has win.
@@ -101,13 +107,11 @@ public class ClassicSimon extends clsGame
 		clsGameButton(int assignedSoundEffect)
 		{
 			this.assignedSoundEffect = assignedSoundEffect;
-			Log.i("bnlake","Assigned sound: " + this.assignedSoundEffect);
 		}
 
 		@Override
 		public void onClick(View view)
 		{
-			Log.i("bnlake","In the listener");
 			playSound(assignedSoundEffect);
 		}
 	}
