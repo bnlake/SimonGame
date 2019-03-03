@@ -9,6 +9,13 @@ public class ClassicSimon extends clsGame
 
     private int score;
 
+    private final int BLUE_SOUND = 0;
+    private final int GREEN_SOUND = 1;
+    private final int RED_SOUND = 2;
+    private final int YELLOW_SOUND = 3;
+
+
+
 	@Override
 	protected void onCreate(Bundle savedInstanceState)
 	{
@@ -80,10 +87,12 @@ public class ClassicSimon extends clsGame
 
     private void gameOver() {
 
+
     }
 
 	private void restartGame() {
 
+	    score = 0;
 	}
 
 	private void returnToMainMenu() {
