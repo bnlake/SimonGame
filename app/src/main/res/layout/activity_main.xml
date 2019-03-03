@@ -40,52 +40,52 @@
         app:layout_constraintTop_toTopOf="parent" />
 
     <Button
-        android:id="@+id/button_play"
+        android:id="@+id/button_classic"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:layout_marginEnd="64dp"
-        android:layout_marginStart="64dp"
+        android:layout_marginEnd="100dp"
+        android:layout_marginStart="100dp"
         android:layout_marginTop="24dp"
-        android:text="Original"
+        android:text="Classic"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/textView" />
 
     <Button
-        android:id="@+id/button_playMode2"
+        android:id="@+id/button_rewind"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:layout_marginStart="64dp"
+        android:layout_marginStart="50dp"
         android:layout_marginTop="8dp"
-        android:text="FirstVariation"
+        android:text="Surprise"
         android:textSize="12sp"
-        app:layout_constraintEnd_toStartOf="@+id/button_playMode3"
+        app:layout_constraintEnd_toStartOf="@+id/button_surprise"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/button_play" />
+        app:layout_constraintTop_toBottomOf="@+id/button_classic" />
 
     <Button
-        android:id="@+id/button_playMode3"
+        android:id="@+id/button_surprise"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:layout_marginEnd="64dp"
+        android:layout_marginEnd="50dp"
         android:layout_marginTop="8dp"
-        android:text="SecondVariation"
+        android:text="Rewind"
         android:textSize="12sp"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toEndOf="@+id/button_playMode2"
-        app:layout_constraintTop_toBottomOf="@+id/button_play" />
+        app:layout_constraintStart_toEndOf="@+id/button_rewind"
+        app:layout_constraintTop_toBottomOf="@+id/button_classic" />
 
     <Button
-        android:id="@+id/button_howToPlay"
+        android:id="@+id/button_rules"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginEnd="100dp"
         android:layout_marginStart="100dp"
-        android:layout_marginTop="44dp"
+        android:layout_marginTop="20dp"
         android:text="Rules"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/button_playMode2" />
+        app:layout_constraintTop_toBottomOf="@+id/button_rewind" />
 
     <Button
         android:id="@+id/button_about"
@@ -97,7 +97,7 @@
         android:text="About"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/button_howToPlay" />
+        app:layout_constraintTop_toBottomOf="@+id/button_rules" />
 
     <LinearLayout
         android:layout_width="wrap_content"
@@ -125,7 +125,7 @@
             android:textSize="24sp" />
 
         <TextView
-            android:id="@+id/textview_maxScore"
+            android:id="@+id/textview_high_score"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_weight="1"

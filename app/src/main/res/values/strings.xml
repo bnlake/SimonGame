@@ -7,12 +7,19 @@
     <string name="lblMenuAboutApp">About App</string>
 
     <!--TODO NEED TO FINISH ABOUT PARAGRAPH-->
-    <string name="textAboutApp">Authors: Han &amp; Brian\n\nSimon is a game of memory invented by Ralph H. Baer and Howard J. Morrison.
+    <string name="textAboutApp">Authors: Han &amp; Brian\n\nSimon is a game of memory invented by Ralph H. Baer and Howard J. Morrison.\n\n
         The game creates a series of tones and lights and requires the user to repeat the sequence.
         If the user can repeat the sequence made by the game, the series becomes harder each time.
         Once the user fails, the game is over.
         We have created our app so people may enjoy some variation to the standard game. Play either the Random or Numerical variant.</string>
-    <string name="gameOriginalRules">Rules for original game....</string>
-    <string name="gameOneRules">Rules for game one....</string>
-    <string name="gameTwoRules">Rules for game two....</string>
+    <string name="generalGameRules">These rules apply to each variation of the game of Simon. The game will randomly pick one of its four buttons,
+        lights up, and plays a sound. Simon will display a pattern of buttons with its own sound and light color.
+        Once the pattern is finished, it\'s your job to press the buttons to match the pattern that the game specifies.
+        \n\nWith each successful pattern matched, it will add one new button to the pattern.
+        \n\nThe game will keep track of your score and give you a high score for each game that will be determined by the amount of buttons that were made successfully according to the pattern.
+        \n\nGood luck to you!
+    </string>
+    <string name="classicGameRules">Press the lenses in exact order that the game displays!</string>
+    <string name="rewindGameRules">Repeat each sequence backwards, from the last signal to the first!</string>
+    <string name="surpriseGameRules">Every lens has the same sound and color. Without any sound or color, repeat the pattern by location!</string>
 </resources>

@@ -1,61 +1,25 @@
 package com.csci4020.simon;
 
 import android.app.Activity;
-import android.graphics.ColorFilter;
 import android.media.AudioAttributes;
 import android.media.SoundPool;
 import android.os.Bundle;
 import android.util.Log;
-import android.view.View;
-import android.widget.ImageButton;
 
-import java.util.ArrayList;
 import java.util.HashSet;
-import java.util.List;
 import java.util.Set;
 
-public abstract class clsGame extends Activity
+public class clsGame extends Activity
 {
-	/**
-	 * GLOBAL Variable to identify the maximum sound effects playable at one time
-	 */
 	private final int MAX_AUDIO_STREAMS = 4;
-
-
-	/**
-	 * Integer ID of loaded sound effects in a sound pool
-	 */
-	private static Set<Integer> soundsLoaded;
 	public static int SOUND_EFFECT_BLUE;
 	public static int SOUND_EFFECT_GREEN;
 	public static int SOUND_EFFECT_RED;
 	public static int SOUND_EFFECT_YELLOW;
+	private SoundPool soundPool;
+	private Set<Integer> soundsLoaded;
+	public float GAME_SPEED = 1.0f;
 
-
-	/**
-	 * Sound pool to manage game sound effects
-	 */
-	private static SoundPool soundPool;
-
-
-	/**
-	 * Game Time. Is the basis for button highlight, pause, and wait for user input.
-	 * Time is in milliseconds
-	 */
-	protected int GAME_INTERVAL_TIME = 300;
-
-
-	/**
-	 * Game speed multiplier. Can be used to slow down or speed up a game
-	 */
-	protected float GAME_SPEED = 1.0f;
-
-
-	/**
-	 * On Create. Ensure global variables are instantiated
-	 *
-	 * @param savedInstanceState
-	 */
 	@Override
 	protected void onCreate(Bundle savedInstanceState)
 	{
@@ -64,10 +28,6 @@ public abstract class clsGame extends Activity
 		soundsLoaded = new HashSet<Integer>();
 	}
 
-
-	/**
-	 * onResume always called so use this to deal with managing preparing/resuming a game
-	 */
 	@Override
 	protected void onResume()
 	{
@@ -106,7 +66,6 @@ public abstract class clsGame extends Activity
 		SOUND_EFFECT_YELLOW = soundPool.load(this, R.raw.yellow, 1);
 	}
 
-
 	/**
 	 * Need to stop any sounds effects if the user leaves the app for any reason
 	 */
@@ -123,35 +82,16 @@ public abstract class clsGame extends Activity
 		}
 	}
 
-
 	/**
 	 * Plays the sound identified by the loaded sound ID
 	 *
 	 * @param soundId int
 	 */
-	protected void playSound(int soundId)
+	public void playSound(int soundId)
 	{
 		if (soundsLoaded.contains(soundId))
 		{
 			this.soundPool.play(soundId, 1.0f, 1.0f, 0, 0, 1.0f);
 		}
-	}
-
-
-	/**
-	 * Change the game speed multiplier. Must be a float
-	 *
-	 * @param GAME_SPEED float (e.g. 1.2f)
-	 */
-	public void setGameSpeed(float GAME_SPEED)
-	{
-		this.GAME_SPEED = GAME_SPEED;
-	}
-
-
-	public void highlightButton (ImageButton button, int highlightColor)
-	{
-		ColorFilter currentBackgroundTint;
-		currentBackgroundTint = button.getColorFilter();
 	}
 }
