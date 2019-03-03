@@ -3,6 +3,7 @@ package com.csci4020.simon;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.Toast;
 
@@ -97,14 +98,16 @@ public class ClassicSimon extends clsGame
 	{
 		private int assignedSoundEffect;
 
-		public clsGameButton(int assignedSoundEffect)
+		clsGameButton(int assignedSoundEffect)
 		{
 			this.assignedSoundEffect = assignedSoundEffect;
+			Log.i("bnlake","Assigned sound: " + this.assignedSoundEffect);
 		}
 
 		@Override
 		public void onClick(View view)
 		{
+			Log.i("bnlake","In the listener");
 			playSound(assignedSoundEffect);
 		}
 	}

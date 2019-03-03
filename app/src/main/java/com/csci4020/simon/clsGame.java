@@ -124,7 +124,7 @@ public abstract class clsGame extends Activity
 	 *
 	 * @param soundId int
 	 */
-	public void playSound(int soundId)
+	public final void playSound(int soundId)
 	{
 		if (soundsLoaded.contains(soundId))
 		{
@@ -138,7 +138,7 @@ public abstract class clsGame extends Activity
 	 *
 	 * @param GAME_SPEED float (e.g. 1.2f)
 	 */
-	public void setGameSpeed(float GAME_SPEED)
+	public final void setGameSpeed(float GAME_SPEED)
 	{
 		this.GAME_SPEED = GAME_SPEED;
 	}
