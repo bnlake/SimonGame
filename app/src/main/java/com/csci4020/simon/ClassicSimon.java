@@ -1,27 +1,23 @@
 package com.csci4020.simon;
 
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.Toast;
 
 public class ClassicSimon extends clsGame
 {
 
+    SharedPreferences sharedPreferences;
     private int score;
-
-    private final int BLUE_SOUND = 0;
-    private final int GREEN_SOUND = 1;
-    private final int RED_SOUND = 2;
-    private final int YELLOW_SOUND = 3;
-
-
+    private boolean mute = false;
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState)
 	{
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_game);
-
 
 		findViewById(R.id.btnBlue).setOnClickListener(new View.OnClickListener()
 		{
@@ -31,6 +27,7 @@ public class ClassicSimon extends clsGame
 				playSound(SOUND_EFFECT_BLUE);
 			}
 		});
+
 		findViewById(R.id.btnGreen).setOnClickListener(new View.OnClickListener()
 		{
 			@Override
@@ -39,6 +36,7 @@ public class ClassicSimon extends clsGame
 				playSound(SOUND_EFFECT_GREEN);
 			}
 		});
+
 		findViewById(R.id.btnRed).setOnClickListener(new View.OnClickListener()
 		{
 			@Override
@@ -47,6 +45,7 @@ public class ClassicSimon extends clsGame
 				playSound(SOUND_EFFECT_RED);
 			}
 		});
+
 		findViewById(R.id.btnYellow).setOnClickListener(new View.OnClickListener()
 		{
 			@Override
@@ -73,11 +72,20 @@ public class ClassicSimon extends clsGame
 		});
 	}
 
+
+    /**
+     * Change text when user presses a button and check if a player has win.
+     */
 	private void setUpSounds() {
 
-        int sounds[] = {
-                clsGame.SOUND_EFFECT_BLUE, clsGame.SOUND_EFFECT_GREEN, clsGame.SOUND_EFFECT_RED, clsGame.SOUND_EFFECT_YELLOW
-        };
+	    // If we're playing Surprise, don't need sound.
+	    if (mute) {
+
+	        return;
+        }
+
+        // TODO: Calling clsGame onResume() to set up the SoundPool
+        
     }
 
     private void startGame() {
@@ -87,7 +95,7 @@ public class ClassicSimon extends clsGame
 
     private void gameOver() {
 
-
+        Toast.makeText(this, "Game Over!", Toast.LENGTH_SHORT).show();
     }
 
 	private void restartGame() {
@@ -99,7 +107,4 @@ public class ClassicSimon extends clsGame
 
 		startActivity(new Intent(getApplicationContext(), MainActivity.class));
 	}
-
-
-
 }
