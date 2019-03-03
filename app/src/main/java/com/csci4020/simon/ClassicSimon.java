@@ -20,26 +20,25 @@ public class ClassicSimon extends clsGame
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_game);
 
-
+		// Assign listeners to menu buttons
 		findViewById(R.id.btn_restartgame).setOnClickListener(new View.OnClickListener()
 		{
 			@Override
 			public void onClick(View v)
 			{
-
 				restartGame();
 			}
 		});
-
 		findViewById(R.id.btn_mainmenu).setOnClickListener(new View.OnClickListener()
 		{
 			@Override
 			public void onClick(View v)
 			{
-
 				returnToMainMenu();
 			}
 		});
+
+		final clsGameSequence gameSequence = new clsGameSequence();
 	}
 
 	@Override
@@ -100,6 +99,7 @@ public class ClassicSimon extends clsGame
 	 * Class to minimize code when assigning onclicklisteners to game buttons
 	 * Inner class so it can utilize the methods from superclass
 	 */
+	// TODO THIS WAY OF DOING IT WON'T LET US USE METHODS IN PARENT CLASS
 	class clsGameButton implements View.OnClickListener
 	{
 		private int assignedSoundEffect;

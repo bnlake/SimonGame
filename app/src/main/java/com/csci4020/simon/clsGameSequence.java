@@ -4,7 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
 
-public abstract class clsGameSequence
+public class clsGameSequence
 {
 	/**
 	 * Use characters to identify the different buttons that exist in a game
@@ -37,11 +37,11 @@ public abstract class clsGameSequence
 
 
 	/**
-	 * Class constructor. Defaults to a start of 4 sequence if a number isn't provided
+	 * Class constructor. Defaults to a start of 1 sequence if a number isn't provided
 	 */
-	public clsGameSequence()
+	clsGameSequence()
 	{
-		for (int i = 0; i < 4; i++)
+		for (int i = 0; i < 1; i++)
 		{
 			generatedGameSequence.add(buttonChoices[rand.nextInt(buttonChoices.length)]);
 		}
@@ -53,7 +53,7 @@ public abstract class clsGameSequence
 	 *
 	 * @param n int Number of initial choices in game sequence
 	 */
-	public clsGameSequence(int n)
+	clsGameSequence(int n)
 	{
 		for (int i = 0; i < n; i++)
 		{
