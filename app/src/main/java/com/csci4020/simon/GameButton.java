@@ -7,8 +7,8 @@ import android.widget.ImageButton;
  * Relates to the R/G/B/Y buttons in simon
  */
 public class GameButton {
-    ImageButton imageButton;    // The view that is assigned as a game button
-    int soundEffectId;
+    private ImageButton imageButton;    // The view that is assigned as a game button
+    private int soundEffectId;
 
     public GameButton(ImageButton imageButton, int soundEffectId) {
         this.imageButton = imageButton;
