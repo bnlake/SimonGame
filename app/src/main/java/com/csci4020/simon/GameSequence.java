@@ -25,11 +25,20 @@ public interface GameSequence
 
 
 	/**
-	 * Retrieve the current Game sequence
+	 * Get character at position n from Game sequence
 	 *
-	 * @return List<Character>
+	 * @param n int
+	 * @return char
 	 */
-	List<Character> getSequence();
+	public char getGameSequenceChar(int n);
+
+	/**
+	 * Get character at position n from User sequence
+	 *
+	 * @param n int
+	 * @return char
+	 */
+	public char getUserSequenceChar(int n);
 
 
 	/**
@@ -38,7 +47,7 @@ public interface GameSequence
 	 * @param x char User Guess
 	 * @return boolean User guess matches Game sequence
 	 */
-	boolean addToSequence(char x);
+	public boolean addToUserSequence(char x);
 
 
 	/**
@@ -46,14 +55,5 @@ public interface GameSequence
 	 *
 	 * @return boolean Indicating success on adding one character to Game sequence
 	 */
-	boolean addToSequence();
-
-
-	/**
-	 * Get character at position n from Game sequence
-	 *
-	 * @param n int
-	 * @return char
-	 */
-	char getSequenceChar(int n);
+	public boolean addToGameSequence();
 }

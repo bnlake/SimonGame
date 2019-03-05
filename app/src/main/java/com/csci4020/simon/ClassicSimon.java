@@ -3,7 +3,6 @@ package com.csci4020.simon;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.View;
 import android.widget.Toast;
 
@@ -13,8 +12,6 @@ public class ClassicSimon extends Game
 	SharedPreferences sharedPreferences;
 	private int score;
 	private boolean mute = false;
-	GameSequence gameSequence;
-	GameSequence userSequence;
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState)
@@ -39,11 +36,6 @@ public class ClassicSimon extends Game
 				returnToMainMenu();
 			}
 		});
-
-		gameSequence = new GameSequence(1);
-		userSequence = new GameSequence();
-
-		Log.i("bnlake","Is it a match?" + gameSequence.equals(userSequence));
 	}
 
 	@Override
