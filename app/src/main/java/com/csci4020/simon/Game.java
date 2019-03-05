@@ -7,15 +7,23 @@ import android.os.Bundle;
 import android.util.Log;
 
 import java.util.HashSet;
+import java.util.LinkedList;
+import java.util.Random;
 import java.util.Set;
 
-public abstract class clsGame extends Activity
-	implements clsGameSequence
+public abstract class Game extends Activity
+		implements GameSequence
 {
 	/**
 	 * GLOBAL Variable to identify the maximum sound effects playable at one time
 	 */
 	private final int MAX_AUDIO_STREAMS = 4;
+
+
+	/**
+	 * Use characters to identify the different buttons that exist in a Game
+	 */
+	public static final char[] buttonChoices = {'r', 'g', 'b', 'y'};
 
 
 	/**
@@ -29,10 +37,21 @@ public abstract class clsGame extends Activity
 
 
 	/**
-	 * Sound pool to manage game sound effects
+	 * Sound pool to manage Game sound effects
 	 */
 	private static SoundPool soundPool;
 
+
+	/**
+	 * Random object to obtain random numbers
+	 */
+	private Random rand = new Random();
+
+
+	/**
+	 * Current Score
+	 */
+	private int score = 0;
 
 	/**
 	 * Game Time. Is the basis for button highlight, pause, and wait for user input.
@@ -42,7 +61,7 @@ public abstract class clsGame extends Activity
 
 
 	/**
-	 * Game speed multiplier. Can be used to slow down or speed up a game
+	 * Game speed multiplier. Can be used to slow down or speed up a Game
 	 */
 	protected float GAME_SPEED = 1.0f;
 
@@ -54,6 +73,11 @@ public abstract class clsGame extends Activity
 	final String KEY_USER_SEQUENCE = "KEY_USER_SEQUENCE";
 
 
+	/**
+	 * Stores the sequence of buttons in a Game
+	 */
+	private LinkedList<Character> userSequence = new LinkedList<>();
+	private LinkedList<Character> gameSequence = new LinkedList<>();
 
 	/**
 	 * On Create. Ensure global variables are instantiated
@@ -70,14 +94,14 @@ public abstract class clsGame extends Activity
 
 
 	/**
-	 * onResume always called so use this to deal with managing preparing/resuming a game
+	 * onResume always called so use this to deal with managing preparing/resuming a Game
 	 */
 	@Override
 	protected void onResume()
 	{
 		super.onResume();
 
-		// Simply identify that these sounds are used in a game
+		// Simply identify that these sounds are used in a Game
 		AudioAttributes.Builder attrBuilder = new AudioAttributes.Builder();
 		attrBuilder.setUsage(AudioAttributes.USAGE_GAME);
 
@@ -143,12 +167,90 @@ public abstract class clsGame extends Activity
 
 
 	/**
-	 * Change the game speed multiplier. Must be a float
+	 * Change the Game speed multiplier. Must be a float
 	 *
 	 * @param GAME_SPEED float (e.g. 1.2f)
 	 */
 	public final void setGameSpeed(float GAME_SPEED)
 	{
 		this.GAME_SPEED = GAME_SPEED;
+	}
+
+
+/////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+
+	/**
+	 * Retrieve the current Game sequence
+	 *
+	 * @return List<Character>
+	 */
+	public LinkedList<Character> getUserSequence()
+	{
+		return userSequence;
+	}
+
+
+	/**
+	 * Retrieve the current Game sequence
+	 *
+	 * @return List<Character>
+	 */
+	public LinkedList<Character> getGameSequence()
+	{
+		return gameSequence;
+	}
+
+	/**
+	 * Add a user guess and check if it matches the corresponding Game sequence value
+	 *
+	 * @param x char User Guess
+	 * @return boolean User guess matches Game sequence
+	 */
+	public boolean addToUserSequence(char x)
+	{
+		userSequence.add(x);
+		return (userSequence.get(userSequence.size() - 1) == userSequence.get(userSequence.size() - 1));
+	}
+
+
+	/**
+	 * Add one more button to the Game sequence
+	 *
+	 * @return boolean Indicating success on adding one character to Game sequence
+	 */
+	public boolean addToGameSequence()
+	{
+		try
+		{
+			gameSequence.add(buttonChoices[rand.nextInt(buttonChoices.length)]);
+			return true;
+		} catch (RuntimeException e)
+		{
+			return false;
+		}
+	}
+
+
+	/**
+	 * Get character at position n from Game sequence
+	 *
+	 * @param n int
+	 * @return char
+	 */
+	public char getGameSequenceChar(int n)
+	{
+		return gameSequence.get(n);
+	}
+
+	/**
+	 * Get character at position n from User sequence
+	 *
+	 * @param n int
+	 * @return char
+	 */
+	public char getUserSequenceChar(int n)
+	{
+		return gameSequence.get(n);
 	}
 }

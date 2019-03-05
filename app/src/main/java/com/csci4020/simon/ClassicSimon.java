@@ -7,14 +7,14 @@ import android.util.Log;
 import android.view.View;
 import android.widget.Toast;
 
-public class ClassicSimon extends clsGame
+public class ClassicSimon extends Game
 {
 
 	SharedPreferences sharedPreferences;
 	private int score;
 	private boolean mute = false;
-	clsGameSequence gameSequence;
-	clsGameSequence userSequence;
+	GameSequence gameSequence;
+	GameSequence userSequence;
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState)
@@ -40,8 +40,8 @@ public class ClassicSimon extends clsGame
 			}
 		});
 
-		gameSequence = new clsGameSequence(1);
-		userSequence = new clsGameSequence();
+		gameSequence = new GameSequence(1);
+		userSequence = new GameSequence();
 
 		Log.i("bnlake","Is it a match?" + gameSequence.equals(userSequence));
 	}
@@ -50,7 +50,7 @@ public class ClassicSimon extends clsGame
 	protected void onResume()
 	{
 		super.onResume();
-		// Create the listeners for game buttons. Assign sound effect appropriately
+		// Create the listeners for Game buttons. Assign sound effect appropriately
 		// Need to put these in onResume since the soundpool wouldn't have been created until now
 		findViewById(R.id.btnBlue).setOnClickListener(new clsGameButton(SOUND_EFFECT_BLUE));
 		findViewById(R.id.btnGreen).setOnClickListener(new clsGameButton(SOUND_EFFECT_GREEN));
@@ -71,7 +71,7 @@ public class ClassicSimon extends clsGame
 			return;
 		}
 
-		// TODO: Calling clsGame onResume() to set up the SoundPool
+		// TODO: Calling Game onResume() to set up the SoundPool
 
 	}
 
@@ -111,7 +111,7 @@ public class ClassicSimon extends clsGame
 	}
 
 	/**
-	 * Class to minimize code when assigning onclicklisteners to game buttons
+	 * Class to minimize code when assigning onclicklisteners to Game buttons
 	 * Inner class so it can utilize the methods from superclass
 	 */
 	// TODO THIS WAY OF DOING IT WON'T LET US USE METHODS IN PARENT CLASS
