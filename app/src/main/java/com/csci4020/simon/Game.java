@@ -3,6 +3,7 @@ package com.csci4020.simon;
 import android.app.Activity;
 import android.media.AudioAttributes;
 import android.media.SoundPool;
+import android.os.AsyncTask;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
@@ -196,6 +197,11 @@ public abstract class Game extends Activity
         }
     }
 
+    public void PlaySequence() {
+        PlaySequence playSequence = new PlaySequence(gameSequence);
+        playSequence.execute();
+    }
+
 
 /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
@@ -264,5 +270,41 @@ public abstract class Game extends Activity
      */
     public char getUserSequenceChar(int n) {
         return gameSequence.get(n);
+    }
+
+    public class PlaySequence extends AsyncTask<Void, Void, Void> {
+        LinkedList<Character> sequence;
+
+        public PlaySequence(LinkedList<Character> sequence) {
+            this.sequence = sequence;
+        }
+//TODO IMPLEMENT PLAYING THE SEQUENCE
+        @Override
+        protected Void doInBackground(Void... voids) {
+            try {
+                runOnUiThread(new Runnable() {
+                    @Override
+                    public void run() {
+                        Log.i("bnlake", "Should be playing the sequence");
+                    }
+                });
+            } catch (RuntimeException e) {
+                Log.i("bnlake", "Playing the sequence was interrupted");
+            }
+
+            return null;
+        }
+
+        @Override
+        protected void onPreExecute() {
+            super.onPreExecute();
+            Log.i("bnlake", "Made it to the presequence");
+        }
+
+        @Override
+        protected void onPostExecute(Void aVoid) {
+            super.onPostExecute(aVoid);
+            Log.i("bnlake", "Made it to the post sequence");
+        }
     }
 }
