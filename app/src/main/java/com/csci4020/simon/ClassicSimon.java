@@ -54,6 +54,7 @@ public class ClassicSimon extends Game {
     private void startGame() {
         findViewById(R.id.btnStartGame).setVisibility(View.INVISIBLE);
         setScore(0);
+
     }
 
     private void gameOver() {
@@ -81,6 +82,16 @@ public class ClassicSimon extends Game {
         super.onSaveInstanceState(outState);
     }
 
+
+    @Override
+    public void onClick(View v) {
+        onClickActions(GAME_BUTTON_BLUE, buttonChoices[0]);
+    }
+
+    void onClickActions(GameButton gameButton, char buttonChar)
+    {
+
+    }
     /**
      * Class to minimize code when assigning onclicklisteners to Game buttons
      * Inner class so it can utilize the methods from superclass

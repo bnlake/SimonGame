@@ -6,7 +6,7 @@ import android.widget.ImageButton;
  * Game Button Class. All functions that a game button can do
  * Relates to the R/G/B/Y buttons in simon
  */
-public class GameButton {
+public class GameButton{
     private ImageButton imageButton;    // The view that is assigned as a game button
     private int soundEffectId;
 

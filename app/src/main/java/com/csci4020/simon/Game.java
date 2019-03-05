@@ -265,20 +265,4 @@ public abstract class Game extends Activity
     public char getUserSequenceChar(int n) {
         return gameSequence.get(n);
     }
-
-
-    /**
-     * Onclick to handle the pressing of a game button
-     *
-     * @param v View object that was clicked
-     */
-    @Override
-    public void onClick(View v) {
-        // Use the ImageButton Tag to identify which button was pressed
-        // There HAS to be a better OOP way of doing this?
-        switch (v.getTag().toString()) {
-            case "r":
-
-        }
-    }
 }
