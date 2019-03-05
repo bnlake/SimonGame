@@ -7,14 +7,17 @@ import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
 import android.widget.ImageButton;
+import android.widget.ImageView;
 
+import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.LinkedList;
+import java.util.List;
 import java.util.Random;
 import java.util.Set;
 
 public abstract class Game extends Activity
-		implements GameSequence
+		implements GameSequence, View.OnClickListener
 {
 	/**
 	 * GLOBAL Variable to identify the maximum sound effects playable at one time
@@ -84,7 +87,7 @@ public abstract class Game extends Activity
 	/**
 	 * Game Button class to identify the buttons that are playable
 	 */
-	protected GameButton<ImageButton, Integer>[] gameButtons;
+	protected List<GameButton<ImageButton, Integer>> gameButtons;
 
 	/**
 	 * On Create. Ensure global variables are instantiated
@@ -96,7 +99,7 @@ public abstract class Game extends Activity
 	{
 		super.onCreate(savedInstanceState);
 		// A unique set of integers that correlates to loaded sound ids
-		soundsLoaded = new HashSet<Integer>();
+		soundsLoaded = new HashSet<>();
 	}
 
 
@@ -139,6 +142,13 @@ public abstract class Game extends Activity
 		SOUND_EFFECT_GREEN = soundPool.load(this, R.raw.green, 1);
 		SOUND_EFFECT_RED = soundPool.load(this, R.raw.red, 1);
 		SOUND_EFFECT_YELLOW = soundPool.load(this, R.raw.yellow, 1);
+
+		// Set the game buttons
+		gameButtons = new ArrayList<>();
+		gameButtons.add(new GameButton<>(((ImageButton)findViewById(R.id.btnBlue)),SOUND_EFFECT_BLUE));
+		gameButtons.add(new GameButton<>(((ImageButton)findViewById(R.id.btnRed)),SOUND_EFFECT_RED));
+		gameButtons.add(new GameButton<>(((ImageButton)findViewById(R.id.btnGreen)),SOUND_EFFECT_GREEN));
+		gameButtons.add(new GameButton<>(((ImageButton)findViewById(R.id.btnYellow)),SOUND_EFFECT_YELLOW));
 	}
 
 
@@ -268,6 +278,10 @@ public abstract class Game extends Activity
 	 */
 	@Override
 	public void onClick(View v) {
-		if (v.getId() == )
+		switch (v.getTag().toString())
+		{
+			case "r":
+
+		}
 	}
 }
