@@ -17,4 +17,20 @@ public class GameButton {
 
     public GameButton() {
     }
+
+    public ImageButton getImageButton() {
+        return imageButton;
+    }
+
+    public void setImageButton(ImageButton imageButton) {
+        this.imageButton = imageButton;
+    }
+
+    public int getSoundEffectId() {
+        return soundEffectId;
+    }
+
+    public void setSoundEffectId(int soundEffectId) {
+        this.soundEffectId = soundEffectId;
+    }
 }
