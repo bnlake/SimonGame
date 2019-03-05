@@ -278,6 +278,8 @@ public abstract class Game extends Activity
 	 */
 	@Override
 	public void onClick(View v) {
+		// Use the ImageButton Tag to identify which button was pressed
+		// There HAS to be a better OOP way of doing this?
 		switch (v.getTag().toString())
 		{
 			case "r":
