@@ -36,6 +36,14 @@ public class ClassicSimon extends Game
 				returnToMainMenu();
 			}
 		});
+		findViewById(R.id.btnStartGame).setOnClickListener(new View.OnClickListener()
+		{
+			@Override
+			public void onClick(View view)
+			{
+				startGame();
+			}
+		});
 	}
 
 	@Override
@@ -69,7 +77,7 @@ public class ClassicSimon extends Game
 
 	private void startGame()
 	{
-
+		findViewById(R.id.btnStartGame).setVisibility(View.INVISIBLE);
 		score = 0;
 	}
 
