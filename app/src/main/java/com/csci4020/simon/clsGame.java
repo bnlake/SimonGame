@@ -10,6 +10,7 @@ import java.util.HashSet;
 import java.util.Set;
 
 public abstract class clsGame extends Activity
+	implements clsGameSequence
 {
 	/**
 	 * GLOBAL Variable to identify the maximum sound effects playable at one time
