@@ -54,6 +54,7 @@ public class ClassicSimon extends Game {
     private void startGame() {
         findViewById(R.id.btnStartGame).setVisibility(View.INVISIBLE);
         setScore(0);
+        //TODO REMOVE THE FOLLOWING LINE AND MOVE TO WHEN A SEQUENCE NEEDS TO BE PLAYED
         PlaySequence();
     }
 
