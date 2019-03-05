@@ -5,6 +5,8 @@ import android.media.AudioAttributes;
 import android.media.SoundPool;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.View;
+import android.widget.ImageButton;
 
 import java.util.HashSet;
 import java.util.LinkedList;
@@ -78,6 +80,11 @@ public abstract class Game extends Activity
 	 */
 	private LinkedList<Character> userSequence = new LinkedList<>();
 	private LinkedList<Character> gameSequence = new LinkedList<>();
+
+	/**
+	 * Game Button class to identify the buttons that are playable
+	 */
+	protected GameButton<ImageButton, Integer>[] gameButtons;
 
 	/**
 	 * On Create. Ensure global variables are instantiated
@@ -252,5 +259,15 @@ public abstract class Game extends Activity
 	public char getUserSequenceChar(int n)
 	{
 		return gameSequence.get(n);
+	}
+
+
+	/**
+	 * Onclick to handle the pressing of a game button
+	 * @param v View object that was clicked
+	 */
+	@Override
+	public void onClick(View v) {
+		if (v.getId() == )
 	}
 }

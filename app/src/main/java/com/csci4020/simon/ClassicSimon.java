@@ -110,24 +110,24 @@ public class ClassicSimon extends Game
 		super.onSaveInstanceState(outState);
 	}
 
-	/**
-	 * Class to minimize code when assigning onclicklisteners to Game buttons
-	 * Inner class so it can utilize the methods from superclass
-	 */
-	// TODO THIS WAY OF DOING IT WON'T LET US USE METHODS IN PARENT CLASS
-	class clsGameButton implements View.OnClickListener
-	{
-		private int assignedSoundEffect;
-
-		clsGameButton(int assignedSoundEffect)
+		/**
+		 * Class to minimize code when assigning onclicklisteners to Game buttons
+		 * Inner class so it can utilize the methods from superclass
+		 */
+		// TODO THIS WAY OF DOING IT WON'T LET US USE METHODS IN PARENT CLASS
+		class clsGameButton implements View.OnClickListener
 		{
-			this.assignedSoundEffect = assignedSoundEffect;
-		}
+			private int assignedSoundEffect;
 
-		@Override
-		public void onClick(View view)
-		{
-			playSound(assignedSoundEffect);
+			clsGameButton(int assignedSoundEffect)
+			{
+				this.assignedSoundEffect = assignedSoundEffect;
+			}
+
+			@Override
+			public void onClick(View view)
+			{
+				playSound(assignedSoundEffect);
+			}
 		}
-	}
 }
