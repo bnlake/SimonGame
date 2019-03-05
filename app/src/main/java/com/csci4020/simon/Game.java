@@ -7,12 +7,9 @@ import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
 import android.widget.ImageButton;
-import android.widget.ImageView;
 
-import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.LinkedList;
-import java.util.List;
 import java.util.Random;
 import java.util.Set;
 
@@ -23,6 +20,18 @@ public abstract class Game extends Activity
      */
     private final int MAX_AUDIO_STREAMS = 4;
 
+    /**
+     * Used to silence sound effects during a game
+     */
+    private boolean mute = false;
+
+    public void setMute(boolean mute) {
+        this.mute = mute;
+    }
+
+    public boolean isGameMuted() {
+        return mute;
+    }
 
     /**
      * Use characters to identify the different buttons that exist in a Game
@@ -65,6 +74,14 @@ public abstract class Game extends Activity
      */
     private int score = 0;
 
+    public int getScore() {
+        return score;
+    }
+
+    public void setScore(int score) {
+        this.score = score;
+    }
+
     /**
      * Game Time. Is the basis for button highlight, pause, and wait for user input.
      * Time is in milliseconds
@@ -77,6 +94,9 @@ public abstract class Game extends Activity
      */
     protected float GAME_SPEED = 1.0f;
 
+    public final void setGameSpeed(float GAME_SPEED) {
+        this.GAME_SPEED = GAME_SPEED;
+    }
 
     /**
      * Constant variables to easily identify words used in savedstate
@@ -167,19 +187,13 @@ public abstract class Game extends Activity
      * @param soundId int
      */
     public final void playSound(int soundId) {
-        if (soundsLoaded.contains(soundId)) {
-            soundPool.play(soundId, 1.0f, 1.0f, 0, 0, 1.0f);
+        if (isGameMuted())
+            return;
+        else {
+            if (soundsLoaded.contains(soundId)) {
+                soundPool.play(soundId, 1.0f, 1.0f, 0, 0, 1.0f);
+            }
         }
-    }
-
-
-    /**
-     * Change the Game speed multiplier. Must be a float
-     *
-     * @param GAME_SPEED float (e.g. 1.2f)
-     */
-    public final void setGameSpeed(float GAME_SPEED) {
-        this.GAME_SPEED = GAME_SPEED;
     }
 
 

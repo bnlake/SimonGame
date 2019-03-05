@@ -10,8 +10,6 @@ public class ClassicSimon extends Game
 {
 
 	SharedPreferences sharedPreferences;
-	private int score;
-	private boolean mute = false;
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState)
@@ -61,24 +59,11 @@ public class ClassicSimon extends Game
 	/**
 	 * Change text when user presses a button and check if a player has win.
 	 */
-	private void setUpSounds()
-	{
-
-		// If we're playing Surprise, don't need sound.
-		if (mute)
-		{
-
-			return;
-		}
-
-		// TODO: Calling Game onResume() to set up the SoundPool
-
-	}
 
 	private void startGame()
 	{
 		findViewById(R.id.btnStartGame).setVisibility(View.INVISIBLE);
-		score = 0;
+		setScore(0);
 	}
 
 	private void gameOver()
@@ -89,7 +74,7 @@ public class ClassicSimon extends Game
 
 	private void restartGame()
 	{
-		score = 0;
+		setScore(0);
 	}
 
 	private void returnToMainMenu()
