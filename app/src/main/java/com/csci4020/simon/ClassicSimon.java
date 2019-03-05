@@ -13,6 +13,8 @@ public class ClassicSimon extends clsGame
 	SharedPreferences sharedPreferences;
 	private int score;
 	private boolean mute = false;
+	clsGameSequence gameSequence;
+	clsGameSequence userSequence;
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState)
@@ -38,7 +40,10 @@ public class ClassicSimon extends clsGame
 			}
 		});
 
-		final clsGameSequence gameSequence = new clsGameSequence();
+		gameSequence = new clsGameSequence(1);
+		userSequence = new clsGameSequence();
+
+		Log.i("bnlake","Is it a match?" + gameSequence.equals(userSequence));
 	}
 
 	@Override
@@ -84,7 +89,6 @@ public class ClassicSimon extends clsGame
 
 	private void restartGame()
 	{
-
 		score = 0;
 	}
 
@@ -94,6 +98,17 @@ public class ClassicSimon extends clsGame
 		startActivity(new Intent(getApplicationContext(), MainActivity.class));
 	}
 
+
+	/**
+	 * Used to handle app cycles during rotations
+	 * Store what needs to be retrieved when they get back
+	 * @param outState
+	 */
+	@Override
+	protected void onSaveInstanceState(Bundle outState)
+	{
+		super.onSaveInstanceState(outState);
+	}
 
 	/**
 	 * Class to minimize code when assigning onclicklisteners to game buttons

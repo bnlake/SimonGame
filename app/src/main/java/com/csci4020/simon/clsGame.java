@@ -47,6 +47,14 @@ public abstract class clsGame extends Activity
 
 
 	/**
+	 * Constant variables to easily identify words used in savedstate
+	 */
+	final String KEY_GAME_SEQUENCE = "KEY_GAME_SEQUENCE";
+	final String KEY_USER_SEQUENCE = "KEY_USER_SEQUENCE";
+
+
+
+	/**
 	 * On Create. Ensure global variables are instantiated
 	 *
 	 * @param savedInstanceState default

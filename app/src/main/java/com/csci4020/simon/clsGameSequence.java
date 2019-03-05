@@ -1,11 +1,15 @@
 package com.csci4020.simon;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
 
-public class clsGameSequence
+public class clsGameSequence implements Serializable
 {
+	private static final long serialVersionUID = -398377828479839840L;
+
+
 	/**
 	 * Use characters to identify the different buttons that exist in a game
 	 */
@@ -15,13 +19,7 @@ public class clsGameSequence
 	/**
 	 * Stores the sequence of buttons in a game
 	 */
-	private List<Character> generatedGameSequence = new ArrayList<>();
-
-
-	/**
-	 * Stores the users sequence of guesses
-	 */
-	private List<Character> userGuessSequence = new ArrayList<>();
+	private List<Character> sequence = new ArrayList<>();
 
 
 	/**
@@ -37,14 +35,10 @@ public class clsGameSequence
 
 
 	/**
-	 * Class constructor. Defaults to a start of 1 sequence if a number isn't provided
+	 * Class constructor. Defaults to a start of 0 sequence if a number isn't provided
 	 */
 	clsGameSequence()
 	{
-		for (int i = 0; i < 1; i++)
-		{
-			generatedGameSequence.add(buttonChoices[rand.nextInt(buttonChoices.length)]);
-		}
 	}
 
 
@@ -57,7 +51,7 @@ public class clsGameSequence
 	{
 		for (int i = 0; i < n; i++)
 		{
-			generatedGameSequence.add(buttonChoices[rand.nextInt(buttonChoices.length)]);
+			sequence.add(buttonChoices[rand.nextInt(buttonChoices.length)]);
 		}
 	}
 
@@ -67,20 +61,9 @@ public class clsGameSequence
 	 *
 	 * @return List<Character>
 	 */
-	public List<Character> getGeneratedGameSequence()
+	public List<Character> getSequence()
 	{
-		return generatedGameSequence;
-	}
-
-
-	/**
-	 * Retrieve the current game sequence
-	 *
-	 * @return List<Character>
-	 */
-	public List<Character> getUserGuessSequence()
-	{
-		return userGuessSequence;
+		return sequence;
 	}
 
 
@@ -90,10 +73,10 @@ public class clsGameSequence
 	 * @param x char User Guess
 	 * @return boolean User guess matches game sequence
 	 */
-	public boolean addUserGuess(char x)
+	public boolean addToSequence(char x)
 	{
-		userGuessSequence.add(x);
-		return (generatedGameSequence.get(userGuessSequence.size() - 1) == userGuessSequence.get(userGuessSequence.size() - 1));
+		sequence.add(x);
+		return (sequence.get(sequence.size() - 1) == sequence.get(sequence.size() - 1));
 	}
 
 
@@ -102,11 +85,11 @@ public class clsGameSequence
 	 *
 	 * @return boolean Indicating success on adding one character to game sequence
 	 */
-	public boolean addToGameSequence()
+	public boolean addToSequence()
 	{
 		try
 		{
-			generatedGameSequence.add(buttonChoices[rand.nextInt(buttonChoices.length)]);
+			sequence.add(buttonChoices[rand.nextInt(buttonChoices.length)]);
 			return true;
 		} catch (RuntimeException e)
 		{
@@ -116,56 +99,40 @@ public class clsGameSequence
 
 
 	/**
-	 * Get the current score
-	 *
-	 * @return int
-	 */
-	public int getScore()
-	{
-		return score;
-	}
-
-
-	/**
-	 * Set the current score. Most likely used to reset to zero
-	 *
-	 * @param score int
-	 */
-	public void setScore(int score)
-	{
-		this.score = score;
-	}
-
-
-	/**
 	 * Get character at position n from game sequence
 	 *
 	 * @param n int
 	 * @return char
 	 */
-	public char getGameChar(int n)
+	public char getSequenceChar(int n)
 	{
-		return generatedGameSequence.get(n);
+		return sequence.get(n);
 	}
 
 
 	/**
-	 * Get character at position n from user guess sequence
-	 *
-	 * @param n int
-	 * @return char
-	 */
-	public char getUserChar(int n)
-	{
-		return userGuessSequence.get(n);
-	}
-
-
-	/**
+	 * Compare one game sequence to another.
+	 * @param y clsGameSequence compared object
 	 * @return boolean
 	 */
-	public boolean turnOver()
+	public boolean equals(clsGameSequence y)
 	{
-		return generatedGameSequence.size() == userGuessSequence.size();
+		if (this.sequence.size() < 1 && y.sequence.size() < 1)
+			return true;
+
+		if (this.sequence.size() != y.sequence.size())
+			return false;
+		else
+		{
+			for (int i = 0; i < this.sequence.size(); i++)
+			{
+				if (this.getSequenceChar(i) != y.getSequenceChar(i))
+					return false;
+				else
+					return true;
+			}
+		}
+
+		return false;	// Safety statement if we get here for some reason
 	}
 }
