@@ -15,406 +15,258 @@ import java.util.Random;
 import java.util.Set;
 
 public abstract class Game extends Activity
-		implements GameSequence, View.OnClickListener
-{
-	/**
-	 * GLOBAL Variable to identify the maximum sound effects playable at one time
-	 */
-	private final int MAX_AUDIO_STREAMS = 4;
+        implements GameSequence, View.OnClickListener {
+    /**
+     * GLOBAL Variable to identify the maximum sound effects playable at one time
+     */
+    private final int MAX_AUDIO_STREAMS = 4;
 
-	/**
-	 * Game Time. Is the basis for button highlight, pause, and wait for user input.
-	 * Time is in milliseconds
-	 */
-	protected int GAME_INTERVAL_TIME = 1000;
-
-
-	/**
-	 * Game speed multiplier. Can be used to slow down or speed up a Game
-	 */
-	protected float GAME_SPEED = 2.0f;
-
-	/**
-	 * Used to silence sound effects during a game
-	 */
-	private boolean mute = false;
-
-	public void setMute(boolean mute)
-	{
-		this.mute = mute;
-	}
-
-	public boolean isGameMuted()
-	{
-		return mute;
-	}
-
-	/**
-	 * Use characters to identify the different buttons that exist in a Game
-	 */
-	public static final char[] buttonChoices = {'r', 'g', 'b', 'y'};
+    /**
+     * Game Time. Is the basis for button highlight, pause, and wait for user input.
+     * Time is in milliseconds
+     */
+    protected int GAME_INTERVAL_TIME = 1000;
 
 
-	/**
-	 * Integer ID of loaded sound effects in a sound pool
-	 */
-	private static Set<Integer> soundsLoaded;
-	public static int SOUND_EFFECT_BLUE;
-	public static int SOUND_EFFECT_GREEN;
-	public static int SOUND_EFFECT_RED;
-	public static int SOUND_EFFECT_YELLOW;
+    /**
+     * Game speed multiplier. Can be used to slow down or speed up a Game
+     */
+    protected float GAME_SPEED = 2.0f;
+
+    /**
+     * Used to silence sound effects during a game
+     */
+    private boolean mute = false;
+
+    public void setMute(boolean mute) {
+        this.mute = mute;
+    }
+
+    public boolean isGameMuted() {
+        return mute;
+    }
+
+    /**
+     * Use characters to identify the different buttons that exist in a Game
+     */
+    public static final char[] buttonChoices = {'r', 'g', 'b', 'y'};
 
 
-	/**
-	 * Game Buttons
-	 */
-	public GameButton GAME_BUTTON_RED;
-	public GameButton GAME_BUTTON_BLUE;
-	public GameButton GAME_BUTTON_GREEN;
-	public GameButton GAME_BUTTON_YELLOW;
-
-	/**
-	 * Sound pool to manage Game sound effects
-	 */
-	private static SoundPool soundPool;
+    /**
+     * Integer ID of loaded sound effects in a sound pool
+     */
+    private static Set<Integer> soundsLoaded;
+    public static int SOUND_EFFECT_BLUE;
+    public static int SOUND_EFFECT_GREEN;
+    public static int SOUND_EFFECT_RED;
+    public static int SOUND_EFFECT_YELLOW;
 
 
-	/**
-	 * Random object to obtain random numbers
-	 */
-	private Random rand = new Random();
+    /**
+     * Sound pool to manage Game sound effects
+     */
+    private static SoundPool soundPool;
 
 
-	/**
-	 * Current Score
-	 */
-	private int score = 0;
-
-	public int getScore()
-	{
-		return score;
-	}
-
-	public void setScore(int score)
-	{
-		this.score = score;
-	}
+    /**
+     * Random object to obtain random numbers
+     */
+    private Random rand = new Random();
 
 
-	public final void setGameSpeed(float GAME_SPEED)
-	{
-		this.GAME_SPEED = GAME_SPEED;
-	}
+    /**
+     * Current Score
+     */
+    private int score = 0;
 
-	/**
-	 * Constant variables to easily identify words used in savedstate
-	 */
-	final String KEY_GAME_SEQUENCE = "KEY_GAME_SEQUENCE";
-	final String KEY_USER_SEQUENCE = "KEY_USER_SEQUENCE";
+    public int getScore() {
+        return score;
+    }
 
-
-	/**
-	 * Stores a sequence of buttons
-	 */
-	private LinkedList<Character> userSequence = new LinkedList<>();
-
-	public void setUserSequence(LinkedList<Character> userSequence)
-	{
-		this.userSequence = userSequence;
-	}
+    public void setScore(int score) {
+        this.score = score;
+    }
 
 
-	/**
-	 * Retrieve the current Game sequence
-	 *
-	 * @return List<Character>
-	 */
-	public LinkedList<Character> getUserSequence()
-	{
-		return userSequence;
-	}
+    public final void setGameSpeed(float GAME_SPEED) {
+        this.GAME_SPEED = GAME_SPEED;
+    }
+
+    /**
+     * Constant variables to easily identify words used in savedstate
+     */
+    final String KEY_GAME_SEQUENCE = "KEY_GAME_SEQUENCE";
+    final String KEY_USER_SEQUENCE = "KEY_USER_SEQUENCE";
 
 
-	/**
-	 * Add a user guess and check if it matches the corresponding Game sequence value
-	 *
-	 * @param x char User Guess
-	 * @return boolean User guess matches Game sequence
-	 */
-	public boolean addToUserSequence(char x)
-	{
-		userSequence.add(x);
-		return (userSequence.get(userSequence.size() - 1) == userSequence.get(userSequence.size() - 1));
-	}
+    /**
+     * Stores a sequence of buttons
+     */
+    private LinkedList<Character> userSequence = new LinkedList<>();
+
+    public void setUserSequence(LinkedList<Character> userSequence) {
+        this.userSequence = userSequence;
+    }
 
 
-	/**
-	 * Get character at position n from User sequence
-	 *
-	 * @param n int
-	 * @return char
-	 */
-	public char getUserSequenceChar(int n)
-	{
-		return gameSequence.get(n);
-	}
+    /**
+     * Retrieve the current User sequence
+     *
+     * @return List<Character>
+     */
+    public LinkedList<Character> getUserSequence() {
+        return userSequence;
+    }
 
 
-	/**
-	 * Stores a sequence of buttons
-	 */
-	private LinkedList<Character> gameSequence = new LinkedList<>();
-
-	public void setGameSequence(LinkedList<Character> gameSequence)
-	{
-		this.gameSequence = gameSequence;
-	}
-
-	/**
-	 * Retrieve the current Game sequence
-	 *
-	 * @return List<Character>
-	 */
-	public LinkedList<Character> getGameSequence()
-	{
-		return gameSequence;
-	}
-
-	/**
-	 * Add one more button to the Game sequence
-	 *
-	 * @return boolean Indicating success on adding one character to Game sequence
-	 */
-	public boolean addToGameSequence(int n)
-	{
-		try
-		{
-			for (int i = 0; i < n; i++)
-			{
-				gameSequence.add(buttonChoices[rand.nextInt(buttonChoices.length)]);
-			}
-			return true;
-		} catch (RuntimeException e)
-		{
-			return false;
-		}
-	}
-
-	/**
-	 * Get character at position n from Game sequence
-	 *
-	 * @param n int
-	 * @return char
-	 */
-	public char getGameSequenceChar(int n)
-	{
-		return gameSequence.get(n);
-	}
+    /**
+     * Add a user guess and check if it matches the corresponding Game sequence value
+     *
+     * @param x char User Guess
+     * @return boolean User guess matches Game sequence
+     */
+    public boolean addToUserSequence(char x) {
+        userSequence.add(x);
+        return (userSequence.get(userSequence.size() - 1) == userSequence.get(userSequence.size() - 1));
+    }
 
 
-	/**
-	 * On Create. Ensure global variables are instantiated
-	 *
-	 * @param savedInstanceState default
-	 */
-	@Override
-	protected void onCreate(Bundle savedInstanceState)
-	{
-		super.onCreate(savedInstanceState);
-		// A unique set of integers that correlates to loaded sound ids
-		soundsLoaded = new HashSet<>();
-	}
+    /**
+     * Get character at position n from User sequence
+     *
+     * @param n int
+     * @return char
+     */
+    public char getUserSequenceChar(int n) {
+        return gameSequence.get(n);
+    }
 
 
-	/**
-	 * onResume always called so use this to deal with managing preparing/resuming a Game
-	 */
-	@Override
-	protected void onResume()
-	{
-		super.onResume();
+    /**
+     * Stores a sequence of buttons
+     */
+    private LinkedList<Character> gameSequence = new LinkedList<>();
 
-		// Simply identify that these sounds are used in a Game
-		AudioAttributes.Builder attrBuilder = new AudioAttributes.Builder();
-		attrBuilder.setUsage(AudioAttributes.USAGE_GAME);
+    public void setGameSequence(LinkedList<Character> gameSequence) {
+        this.gameSequence = gameSequence;
+    }
 
-		SoundPool.Builder spBuilder = new SoundPool.Builder();
-		spBuilder.setAudioAttributes(attrBuilder.build());
-		spBuilder.setMaxStreams(MAX_AUDIO_STREAMS);
-		soundPool = spBuilder.build();
+    /**
+     * Retrieve the current Game sequence
+     *
+     * @return List<Character>
+     */
+    public LinkedList<Character> getGameSequence() {
+        return gameSequence;
+    }
 
-		soundPool.setOnLoadCompleteListener(new SoundPool.OnLoadCompleteListener()
-		{
-			@Override
-			public void onLoadComplete(SoundPool soundPool, int sampleId, int status)
-			{
-				if (status == 0)
-				{
-					// success. Sound was loaded into memory. Store the loaded sound id
-					soundsLoaded.add(sampleId);
-				}
-				else
-				{
-					Log.i("4020debug", "Error cannot load sound status = " + status);
-				}
-			}
-		});
+    /**
+     * Add one more button to the Game sequence
+     *
+     * @return boolean Indicating success on adding one character to Game sequence
+     */
+    public boolean addToGameSequence(int n) {
+        try {
+            for (int i = 0; i < n; i++) {
+                gameSequence.add(buttonChoices[rand.nextInt(buttonChoices.length)]);
+            }
+            return true;
+        } catch (RuntimeException e) {
+            return false;
+        }
+    }
 
-		// Obtain the ID's of the raw audio files for easy access
-		SOUND_EFFECT_BLUE = soundPool.load(this, R.raw.blue, 1);
-		SOUND_EFFECT_GREEN = soundPool.load(this, R.raw.green, 1);
-		SOUND_EFFECT_RED = soundPool.load(this, R.raw.red, 1);
-		SOUND_EFFECT_YELLOW = soundPool.load(this, R.raw.yellow, 1);
-
-		// Set the game buttons
-		GAME_BUTTON_BLUE = new GameButton(((ImageButton) findViewById(R.id.btnBlue)), SOUND_EFFECT_BLUE);
-		GAME_BUTTON_RED = new GameButton(((ImageButton) findViewById(R.id.btnRed)), SOUND_EFFECT_RED);
-		GAME_BUTTON_GREEN = new GameButton(((ImageButton) findViewById(R.id.btnGreen)), SOUND_EFFECT_GREEN);
-		GAME_BUTTON_YELLOW = new GameButton(((ImageButton) findViewById(R.id.btnYellow)), SOUND_EFFECT_YELLOW);
-	}
+    /**
+     * Get character at position n from Game sequence
+     *
+     * @param n int
+     * @return char
+     */
+    public char getGameSequenceChar(int n) {
+        return gameSequence.get(n);
+    }
 
 
-	/**
-	 * Need to stop any sounds effects if the user leaves the app for any reason
-	 */
-	@Override
-	protected void onPause()
-	{
-		super.onPause();
-		if (soundPool != null)
-		{
-			soundPool.release();
-			soundPool = null;
-
-			soundsLoaded.clear();
-		}
-	}
+    /**
+     * On Create. Ensure global variables are instantiated
+     *
+     * @param savedInstanceState default
+     */
+    @Override
+    protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        // A unique set of integers that correlates to loaded sound ids
+        soundsLoaded = new HashSet<>();
+    }
 
 
-	/**
-	 * Plays the sound identified by the loaded sound ID
-	 *
-	 * @param soundId int
-	 */
-	public final void playSound(int soundId)
-	{
-		if (isGameMuted())
-			return;
-		else
-		{
-			if (soundsLoaded.contains(soundId))
-			{
-				soundPool.play(soundId, 1.0f, 1.0f, 0, 0, 1.0f * GAME_SPEED);
-			}
-		}
-	}
+    /**
+     * onResume always called so use this to deal with managing preparing/resuming a Game
+     */
+    @Override
+    protected void onResume() {
+        super.onResume();
 
-	/**
-	 * Plays the specified sequence. Simulates "simon" playing
-	 */
-	public void PlaySequence()
-	{
-		PlaySequence playSequence = new PlaySequence(gameSequence);
-		playSequence.execute();
-	}
+        // Simply identify that these sounds are used in a Game
+        AudioAttributes.Builder attrBuilder = new AudioAttributes.Builder();
+        attrBuilder.setUsage(AudioAttributes.USAGE_GAME);
+
+        SoundPool.Builder spBuilder = new SoundPool.Builder();
+        spBuilder.setAudioAttributes(attrBuilder.build());
+        spBuilder.setMaxStreams(MAX_AUDIO_STREAMS);
+        soundPool = spBuilder.build();
+
+        soundPool.setOnLoadCompleteListener(new SoundPool.OnLoadCompleteListener() {
+            @Override
+            public void onLoadComplete(SoundPool soundPool, int sampleId, int status) {
+                if (status == 0) {
+                    // success. Sound was loaded into memory. Store the loaded sound id
+                    soundsLoaded.add(sampleId);
+                } else {
+                    Log.i("4020debug", "Error cannot load sound status = " + status);
+                }
+            }
+        });
+
+        // Obtain the ID's of the raw audio files for easy access
+        SOUND_EFFECT_BLUE = soundPool.load(this, R.raw.blue, 1);
+        SOUND_EFFECT_GREEN = soundPool.load(this, R.raw.green, 1);
+        SOUND_EFFECT_RED = soundPool.load(this, R.raw.red, 1);
+        SOUND_EFFECT_YELLOW = soundPool.load(this, R.raw.yellow, 1);
+    }
+
+
+    /**
+     * Need to stop any sounds effects if the user leaves the app for any reason
+     */
+    @Override
+    protected void onPause() {
+        super.onPause();
+        if (soundPool != null) {
+            soundPool.release();
+            soundPool = null;
+
+            soundsLoaded.clear();
+        }
+    }
+
+
+    /**
+     * Plays the sound identified by the loaded sound ID
+     *
+     * @param soundId int
+     */
+    public final void playSound(int soundId) {
+        if (isGameMuted())
+            return;
+        else {
+            if (soundsLoaded.contains(soundId)) {
+                soundPool.play(soundId, 1.0f, 1.0f, 0, 0, 1.0f * GAME_SPEED);
+            }
+        }
+    }
 
 
 /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-
-	public class PlaySequence extends AsyncTask<Void, Void, Void>
-	{
-		LinkedList<Character> sequence;
-
-		PlaySequence(LinkedList<Character> sequence)
-		{
-			this.sequence = sequence;
-		}
-
-		//TODO IMPLEMENT PLAYING THE SEQUENCE
-		@Override
-		protected Void doInBackground(Void... voids)
-		{
-			try
-			{
-				// Loop through each character in the sequence
-				// Need to highlight the button for the current character
-				for (int i = 0; i < sequence.size(); i++)
-				{
-					final int baseColor;
-					final int highlightColor;
-					final ImageButton imageButton;
-					int soundEffect;
-					// Get values depending on button to highlight
-					switch (sequence.get(i))
-					{
-						case 'r':
-							baseColor = R.color.btnRed;
-							highlightColor = R.color.btnRedHighlight;
-							imageButton = GAME_BUTTON_RED.getImageButton();
-							soundEffect = SOUND_EFFECT_RED;
-							break;
-						case 'g':
-							baseColor = R.color.btnGreen;
-							highlightColor = R.color.btnGreenHighlight;
-							imageButton = GAME_BUTTON_GREEN.getImageButton();
-							soundEffect = SOUND_EFFECT_GREEN;
-							break;
-						case 'b':
-							baseColor = R.color.btnBlue;
-							highlightColor = R.color.btnBlueHighlight;
-							imageButton = GAME_BUTTON_BLUE.getImageButton();
-							soundEffect = SOUND_EFFECT_BLUE;
-							break;
-						case 'y':
-							baseColor = R.color.btnYellow;
-							highlightColor = R.color.btnYellowHighlight;
-							imageButton = GAME_BUTTON_YELLOW.getImageButton();
-							soundEffect = SOUND_EFFECT_YELLOW;
-							break;
-						default:
-							// Will never reach a default state
-							baseColor = 0;
-							highlightColor = 0;
-							imageButton = null;
-							soundEffect = 0;
-					}
-
-					try
-					{
-						// Highlight the button
-						runOnUiThread(new Runnable()
-						{
-							@Override
-							public void run()
-							{
-								//TODO CAN CREATE METHOD IN GAMEBUTTON CLASS TO DO THE HIGHLIGHT FOR US
-								imageButton.setImageResource(highlightColor);
-							}
-						});
-						playSound(soundEffect);
-						// Pause on highlight
-						Thread.sleep(((Float) (GAME_INTERVAL_TIME / GAME_SPEED)).longValue());
-						// Return the color of the button
-						runOnUiThread(new Runnable()
-						{
-							@Override
-							public void run()
-							{
-								imageButton.setImageResource(baseColor);
-							}
-						});
-					} catch (InterruptedException e)
-					{
-						Log.w("4020debug", "Exception while trying to play the sequence");
-					}
-				}
-			} catch (Exception e)
-			{
-				Log.w("4020debug", "Exception thrown during sequence playing");
-			}
-
-			return null;
-		}
-	}
 }
