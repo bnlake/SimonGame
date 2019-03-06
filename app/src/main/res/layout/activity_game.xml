@@ -45,7 +45,7 @@
                 android:layout_height="match_parent"
                 android:layout_margin="5dp"
                 android:layout_weight="1"
-                android:backgroundTint="@color/btnBlue"
+                android:background="@color/btnBlue"
                 android:tag="b" />
 
             <ImageButton
@@ -54,7 +54,7 @@
                 android:layout_height="match_parent"
                 android:layout_margin="5dp"
                 android:layout_weight="1"
-                android:backgroundTint="@color/btnGreen"
+                android:background="@color/btnGreen"
                 android:tag="g" />
         </LinearLayout>
 
@@ -70,7 +70,7 @@
                 android:layout_height="match_parent"
                 android:layout_margin="5dp"
                 android:layout_weight="1"
-                android:backgroundTint="@color/btnRed"
+                android:background="@color/btnRed"
                 android:tag="r" />
 
             <ImageButton
@@ -79,7 +79,7 @@
                 android:layout_height="match_parent"
                 android:layout_margin="5dp"
                 android:layout_weight="1"
-                android:backgroundTint="@color/btnYellow"
+                android:background="@color/btnYellow"
                 android:tag="y" />
         </LinearLayout>
     </LinearLayout>

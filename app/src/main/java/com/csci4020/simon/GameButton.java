@@ -1,7 +1,5 @@
 package com.csci4020.simon;
 
-import android.content.res.ColorStateList;
-import android.graphics.ColorFilter;
 import android.widget.ImageButton;
 
 /**

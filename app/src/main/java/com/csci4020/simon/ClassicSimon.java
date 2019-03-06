@@ -55,10 +55,10 @@ public class ClassicSimon extends Game {
         findViewById(R.id.btnStartGame).setVisibility(View.INVISIBLE);
         // Reset items
         setScore(0);
-        super.setGameSequence(null);
-        super.setUserSequence(null);
+        super.getGameSequence().clear();
+        super.getUserSequence().clear();
         // Initiate the game sequence
-        super.addToGameSequence(1);
+        super.addToGameSequence(4);
         // Play the sequence for the user
         PlaySequence playSequence = new PlaySequence(super.getGameSequence());
         playSequence.execute();
@@ -70,7 +70,7 @@ public class ClassicSimon extends Game {
     }
 
     private void restartGame() {
-        setScore(0);
+        startGame();
     }
 
     private void returnToMainMenu() {

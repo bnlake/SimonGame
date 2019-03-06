@@ -1,6 +1,7 @@
 package com.csci4020.simon;
 
 import android.app.Activity;
+import android.content.res.ColorStateList;
 import android.media.AudioAttributes;
 import android.media.SoundPool;
 import android.os.AsyncTask;
@@ -21,6 +22,18 @@ public abstract class Game extends Activity
 	 * GLOBAL Variable to identify the maximum sound effects playable at one time
 	 */
 	private final int MAX_AUDIO_STREAMS = 4;
+
+	/**
+	 * Game Time. Is the basis for button highlight, pause, and wait for user input.
+	 * Time is in milliseconds
+	 */
+	protected int GAME_INTERVAL_TIME = 1000;
+
+
+	/**
+	 * Game speed multiplier. Can be used to slow down or speed up a Game
+	 */
+	protected float GAME_SPEED = 1.0f;
 
 	/**
 	 * Used to silence sound effects during a game
@@ -88,17 +101,6 @@ public abstract class Game extends Activity
 		this.score = score;
 	}
 
-	/**
-	 * Game Time. Is the basis for button highlight, pause, and wait for user input.
-	 * Time is in milliseconds
-	 */
-	protected int GAME_INTERVAL_TIME = 300;
-
-
-	/**
-	 * Game speed multiplier. Can be used to slow down or speed up a Game
-	 */
-	protected float GAME_SPEED = 1.0f;
 
 	public final void setGameSpeed(float GAME_SPEED)
 	{
@@ -341,12 +343,54 @@ public abstract class Game extends Activity
 					@Override
 					public void run()
 					{
+						// Loop through each character in the sequence
+						// Need to highlight the button for the current character
+						for (int i = 0; i < sequence.size(); i++)
+						{
+							try
+							{
+								switch (sequence.get(i))
+								{
+									case 'r':
+										GAME_BUTTON_RED.getImageButton().setBackgroundResource(R.color.btnGreen); //TODO CORRECT COLOR
+										playSound(SOUND_EFFECT_RED);
+										Thread.sleep(((Float) ((GAME_INTERVAL_TIME / 3) * GAME_SPEED)).longValue());
+										GAME_BUTTON_RED.getImageButton().setBackgroundResource(R.color.btnRed);
+										Thread.sleep(((Float) (((2 * GAME_INTERVAL_TIME) / 3) * GAME_SPEED)).longValue());
+										break;
+									case 'g':
+										GAME_BUTTON_GREEN.getImageButton().setBackgroundResource(R.color.btnGreenHighlight);
+										playSound(SOUND_EFFECT_GREEN);
+										Thread.sleep(((Float) ((GAME_INTERVAL_TIME / 3) * GAME_SPEED)).longValue());
+										GAME_BUTTON_GREEN.getImageButton().setBackgroundResource(R.color.btnGreen);
+										Thread.sleep(((Float) (((2 * GAME_INTERVAL_TIME) / 3) * GAME_SPEED)).longValue());
+										break;
+									case 'b':
+										GAME_BUTTON_BLUE.getImageButton().setBackgroundResource(R.color.btnBlueHighlight);
+										playSound(SOUND_EFFECT_BLUE);
+										Thread.sleep(((Float) ((GAME_INTERVAL_TIME / 3) * GAME_SPEED)).longValue());
+										GAME_BUTTON_BLUE.getImageButton().setBackgroundResource(R.color.btnBlue);
+										Thread.sleep(((Float) (((2 * GAME_INTERVAL_TIME) / 3) * GAME_SPEED)).longValue());
+										break;
+									case 'y':
+										GAME_BUTTON_YELLOW.getImageButton().setBackgroundResource(R.color.btnYellowHighlight);
+										playSound(SOUND_EFFECT_YELLOW);
+										Thread.sleep(((Float) ((GAME_INTERVAL_TIME / 3) * GAME_SPEED)).longValue());
+										GAME_BUTTON_YELLOW.getImageButton().setBackgroundResource(R.color.btnYellow);
+										Thread.sleep(((Float) (((2 * GAME_INTERVAL_TIME) / 3) * GAME_SPEED)).longValue());
+										break;
+								}
+							} catch (InterruptedException e)
+							{
+								Log.i("4020debug", "Playing the sequence was interrupted");
+							}
+						}
 						Log.i("bnlake", "Should be playing the sequence");
 					}
 				});
-			} catch (RuntimeException e)
+			} catch (Exception e)
 			{
-				Log.i("bnlake", "Playing the sequence was interrupted");
+				Log.w("4020debug", "Exception while trying to play the sequence");
 			}
 
 			return null;
