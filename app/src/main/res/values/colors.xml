@@ -5,6 +5,11 @@
     <color name="btnBlue">#1a67ee</color>
     <color name="btnYellow">#E4C51C</color>
 
+    <color name="btnRedHighlight">#F57A7A</color>
+    <color name="btnGreenHighlight">#BCEC85</color>
+    <color name="btnBlueHighlight">#84ABEE</color>
+    <color name="btnYellowHighlight">#F1E498</color>
+
     <color name="colorBackgroundLight">#FBFCF9</color>
     <color name="colorBackgroundDark">#EEF0E6</color>
     <color name="colorWhite">#FFF</color>

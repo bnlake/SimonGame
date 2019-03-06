@@ -7,6 +7,17 @@
     android:orientation="vertical"
     android:padding="10dp">
 
+    <Button
+        android:id="@+id/btnStartGame"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Start Game"
+        android:textSize="40sp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="0dp"
@@ -34,7 +45,8 @@
                 android:layout_height="match_parent"
                 android:layout_margin="5dp"
                 android:layout_weight="1"
-                android:backgroundTint="@color/btnBlue" />
+                android:background="@color/btnBlue"
+                android:tag="b" />
 
             <ImageButton
                 android:id="@+id/btnGreen"
@@ -42,7 +54,8 @@
                 android:layout_height="match_parent"
                 android:layout_margin="5dp"
                 android:layout_weight="1"
-                android:backgroundTint="@color/btnGreen" />
+                android:background="@color/btnGreen"
+                android:tag="g" />
         </LinearLayout>
 
         <LinearLayout
@@ -57,7 +70,8 @@
                 android:layout_height="match_parent"
                 android:layout_margin="5dp"
                 android:layout_weight="1"
-                android:backgroundTint="@color/btnRed" />
+                android:background="@color/btnRed"
+                android:tag="r" />
 
             <ImageButton
                 android:id="@+id/btnYellow"
@@ -65,7 +79,8 @@
                 android:layout_height="match_parent"
                 android:layout_margin="5dp"
                 android:layout_weight="1"
-                android:backgroundTint="@color/btnYellow" />
+                android:background="@color/btnYellow"
+                android:tag="y" />
         </LinearLayout>
     </LinearLayout>
 
