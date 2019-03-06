@@ -41,10 +41,10 @@ public class ClassicSimon extends Game {
         super.onResume();
         // Create the listeners for Game buttons. Assign sound effect appropriately
         // Need to put these in onResume since the soundpool wouldn't have been created until now
-        GAME_BUTTON_BLUE.getImageButton().setOnClickListener(new clsGameButton(SOUND_EFFECT_BLUE));
-        GAME_BUTTON_GREEN.getImageButton().setOnClickListener(new clsGameButton(SOUND_EFFECT_GREEN));
-        GAME_BUTTON_RED.getImageButton().setOnClickListener(new clsGameButton(SOUND_EFFECT_RED));
-        GAME_BUTTON_YELLOW.getImageButton().setOnClickListener(new clsGameButton(SOUND_EFFECT_YELLOW));
+        GAME_BUTTON_BLUE.getImageButton().setOnClickListener(new GameButtonListener(SOUND_EFFECT_BLUE));
+        GAME_BUTTON_GREEN.getImageButton().setOnClickListener(new GameButtonListener(SOUND_EFFECT_GREEN));
+        GAME_BUTTON_RED.getImageButton().setOnClickListener(new GameButtonListener(SOUND_EFFECT_RED));
+        GAME_BUTTON_YELLOW.getImageButton().setOnClickListener(new GameButtonListener(SOUND_EFFECT_YELLOW));
     }
 
     /**
@@ -53,9 +53,15 @@ public class ClassicSimon extends Game {
 
     private void startGame() {
         findViewById(R.id.btnStartGame).setVisibility(View.INVISIBLE);
+        // Reset items
         setScore(0);
-        //TODO REMOVE THE FOLLOWING LINE AND MOVE TO WHEN A SEQUENCE NEEDS TO BE PLAYED
-        PlaySequence();
+        super.setGameSequence(null);
+        super.setUserSequence(null);
+        // Initiate the game sequence
+        super.addToGameSequence(1);
+        // Play the sequence for the user
+        PlaySequence playSequence = new PlaySequence(super.getGameSequence());
+        playSequence.execute();
     }
 
     private void gameOver() {
@@ -98,10 +104,10 @@ public class ClassicSimon extends Game {
      * Inner class so it can utilize the methods from superclass
      */
     // TODO THIS WAY OF DOING IT WON'T LET US USE METHODS IN PARENT CLASS
-    class clsGameButton implements View.OnClickListener {
+    class GameButtonListener implements View.OnClickListener {
         private int assignedSoundEffect;
 
-        clsGameButton(int assignedSoundEffect) {
+        GameButtonListener(int assignedSoundEffect) {
             this.assignedSoundEffect = assignedSoundEffect;
         }
 

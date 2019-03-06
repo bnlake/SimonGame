@@ -55,5 +55,5 @@ public interface GameSequence
 	 *
 	 * @return boolean Indicating success on adding one character to Game sequence
 	 */
-	public boolean addToGameSequence();
+	public boolean addToGameSequence(int n);
 }
