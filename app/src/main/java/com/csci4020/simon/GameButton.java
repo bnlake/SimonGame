@@ -10,6 +10,7 @@ public class GameButton{
     private ImageButton imageButton;    // The view that is assigned as a game button
     private int soundEffectId;
 
+    // TODO ADD A HIGHLIGHT COLOR PARAMETER TO CONSTRUCTOR TO ALLOW CREATING A HIGH METHOD IN THIS CLASS
     public GameButton(ImageButton imageButton, int soundEffectId) {
         this.imageButton = imageButton;
         this.soundEffectId = soundEffectId;
@@ -34,4 +35,5 @@ public class GameButton{
         this.soundEffectId = soundEffectId;
     }
 
+    //TODO CREATE A HIGHLIGHT TOGGLE METHOD. MIGHT NEED A BOOLEAN TO KEEP IT'S STATE
 }

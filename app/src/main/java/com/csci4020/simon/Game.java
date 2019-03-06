@@ -388,6 +388,7 @@ public abstract class Game extends Activity
 							@Override
 							public void run()
 							{
+								//TODO CAN CREATE METHOD IN GAMEBUTTON CLASS TO DO THE HIGHLIGHT FOR US
 								imageButton.setImageResource(highlightColor);
 							}
 						});
