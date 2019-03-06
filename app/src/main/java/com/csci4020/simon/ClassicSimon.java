@@ -58,10 +58,10 @@ public class ClassicSimon extends Game {
 
         // Create the listeners for Game buttons. Assign sound effect appropriately
         // Need to put these in onResume since the soundpool wouldn't have been created until now
-        GAME_BUTTON_BLUE.getImageButton().setOnClickListener(new GameButtonListener(SOUND_EFFECT_BLUE));
-        GAME_BUTTON_GREEN.getImageButton().setOnClickListener(new GameButtonListener(SOUND_EFFECT_GREEN));
-        GAME_BUTTON_RED.getImageButton().setOnClickListener(new GameButtonListener(SOUND_EFFECT_RED));
-        GAME_BUTTON_YELLOW.getImageButton().setOnClickListener(new GameButtonListener(SOUND_EFFECT_YELLOW));
+        GAME_BUTTON_BLUE.getImageButton().setOnClickListener(new GameButtonListener(GAME_BUTTON_BLUE));
+        GAME_BUTTON_GREEN.getImageButton().setOnClickListener(new GameButtonListener(GAME_BUTTON_GREEN));
+        GAME_BUTTON_RED.getImageButton().setOnClickListener(new GameButtonListener(GAME_BUTTON_RED));
+        GAME_BUTTON_YELLOW.getImageButton().setOnClickListener(new GameButtonListener(GAME_BUTTON_YELLOW));
     }
 
     /**
@@ -121,15 +121,63 @@ public class ClassicSimon extends Game {
      * Inner class so it can utilize the methods from superclass
      */
     class GameButtonListener implements View.OnClickListener {
-        private int assignedSoundEffect;
+        private GameButton gameButton;
 
-        GameButtonListener(int assignedSoundEffect) {
-            this.assignedSoundEffect = assignedSoundEffect;
+        /**
+         * Constructor to recieve that GameButton class
+         * Needed to reference all of the methods of the class
+         *
+         * @param gameButton button context
+         */
+        public GameButtonListener(GameButton gameButton) {
+            this.gameButton = gameButton;
         }
 
+        /**
+         * Manage the listener for a game button
+         * Should have all the steps that are performed when a game button
+         * is pressed
+         *
+         * @param view
+         */
         @Override
         public void onClick(View view) {
-            playSound(assignedSoundEffect);
+            GameButtonPress gameButtonPress = new GameButtonPress();
+            gameButtonPress.execute();
+        }
+
+        /**
+         * GameButtonPress class. Using it this way allows us to utilize AsyncTask
+         * but still reach all of the methods of the Game class
+         */
+        class GameButtonPress extends AsyncTask<Void, Void, Void> {
+
+            @Override
+            protected Void doInBackground(Void... voids) {
+                try {
+                    runOnUiThread(new Runnable() {
+                        @Override
+                        public void run() {
+                            gameButton.toggleHighlight(true);
+                        }
+                    });
+
+                    playSound(gameButton.getSoundEffectId());
+
+                    Thread.sleep(((Float) (GAME_INTERVAL_TIME / GAME_SPEED)).longValue());
+                    // Return the color of the button
+                    runOnUiThread(new Runnable() {
+                        @Override
+                        public void run() {
+                            gameButton.toggleHighlight(false);
+                        }
+                    });
+
+                } catch (InterruptedException e) {
+                    Log.i("4020debug", "Thread was interrupted");
+                }
+                return null;
+            }
         }
     }
 

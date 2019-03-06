@@ -29,7 +29,7 @@ public abstract class Game extends Activity
     /**
      * Game speed multiplier. Can be used to slow down or speed up a Game
      */
-    protected float GAME_SPEED = 2.0f;
+    protected float GAME_SPEED = 4.0f;
 
     /**
      * Used to silence sound effects during a game

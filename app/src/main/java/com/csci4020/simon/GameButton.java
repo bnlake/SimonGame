@@ -1,5 +1,9 @@
 package com.csci4020.simon;
 
+import android.app.Activity;
+import android.os.AsyncTask;
+import android.util.Log;
+import android.view.View;
 import android.widget.ImageButton;
 
 import java.io.Serializable;
@@ -8,7 +12,7 @@ import java.io.Serializable;
  * Game Button Class. All functions that a game button can do
  * Relates to the R/G/B/Y buttons in simon
  */
-public class GameButton implements Serializable {
+public class GameButton extends Activity implements Serializable, View.OnClickListener {
     private ImageButton imageButton;    // The view that is assigned as a game button
     private int soundEffectId;
     private int baseColor;
@@ -61,6 +65,16 @@ public class GameButton implements Serializable {
 
     public void setSoundEffectId(int soundEffectId) {
         this.soundEffectId = soundEffectId;
+    }
+
+    /**
+     * Handle when a game button is pressed
+     * Should highlight, play sound
+     * @param v View
+     */
+    @Override
+    public void onClick(View v) {
+        //TODO DON'T KNOW HOW TO DO THIS OOD STYLE; ASK TEACHER
     }
 
     /**
