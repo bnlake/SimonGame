@@ -3,11 +3,9 @@ package com.csci4020.simon;
 import android.app.Activity;
 import android.media.AudioAttributes;
 import android.media.SoundPool;
-import android.os.AsyncTask;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
-import android.widget.ImageButton;
 
 import java.util.HashSet;
 import java.util.LinkedList;
@@ -265,8 +263,4 @@ public abstract class Game extends Activity
             }
         }
     }
-
-
-/////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-
 }

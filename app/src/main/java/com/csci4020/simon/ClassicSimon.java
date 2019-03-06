@@ -86,10 +86,14 @@ public class ClassicSimon extends Game {
         Toast.makeText(this, "Game Over!", Toast.LENGTH_SHORT).show();
     }
 
+    // TODO When would there be a difference between restart and start?
     private void restartGame() {
         startGame();
     }
 
+    /**
+     * Send user back to the main menu
+     */
     private void returnToMainMenu() {
         startActivity(new Intent(getApplicationContext(), MainActivity.class));
     }
@@ -131,13 +135,9 @@ public class ClassicSimon extends Game {
 
 
     /**
-     * Plays the specified sequence. Simulates "simon" playing
+     * ASYNC class to play a specified sequence
+     * Equates to highlighting, sounds
      */
-    public void PlaySequence() {
-        PlaySequence playSequence = new PlaySequence(super.getGameSequence());
-        playSequence.execute();
-    }
-
     public class PlaySequence extends AsyncTask<Void, Void, Void> {
         LinkedList<Character> sequence;
 
@@ -145,7 +145,6 @@ public class ClassicSimon extends Game {
             this.sequence = sequence;
         }
 
-        //TODO IMPLEMENT PLAYING THE SEQUENCE
         @Override
         protected Void doInBackground(Void... voids) {
             try {
@@ -177,7 +176,6 @@ public class ClassicSimon extends Game {
                         runOnUiThread(new Runnable() {
                             @Override
                             public void run() {
-                                //TODO CAN CREATE METHOD IN GAMEBUTTON CLASS TO DO THE HIGHLIGHT FOR US
                                 gameButton.toggleHighlight(true);
                             }
                         });
