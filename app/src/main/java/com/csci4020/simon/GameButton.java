@@ -68,8 +68,28 @@ public class GameButton extends Activity implements Serializable, View.OnClickLi
     }
 
     /**
+     * Return the imagebutton tag as a character
+     * @return char Gamebutton Char Value
+     */
+    public char getButtonChar() {
+        switch (getImageButton().getTag().toString()) {
+            case "r":
+                return 'r';
+            case "b":
+                return 'b';
+            case "g":
+                return 'g';
+            case "y":
+                return 'y';
+            default:
+                return 'z';
+        }
+    }
+
+    /**
      * Handle when a game button is pressed
      * Should highlight, play sound
+     *
      * @param v View
      */
     @Override

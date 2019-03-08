@@ -147,27 +147,41 @@ public class ClassicSimon extends Game {
                 // Run thread for button sound and highlight
                 GameButtonPress gameButtonPress = new GameButtonPress();
                 gameButtonPress.execute();
+
                 // Retrieve button "tag"
                 // Add to user sequence
-                addToUserSequence(((Character) view.getTag()));
+                addToUserSequence(gameButton.getButtonChar());
+
+                //todo delete
+                Log.i("4020debug","Game sequence size: " + getGameSequence().size());
+                Log.i("4020debug","User sequence size: " + getUserSequence().size());
                 // If user sequence size is < game sequence size
                 if (getUserSequence().size() < getGameSequence().size()) {
+
                     // if position n matches in both sequences
-                    if (getUserSequenceChar((getUserSequence().size() - 1)) == getGameSequenceChar((getGameSequence().size() - 1))) {
+                    Log.i("4020debug","Game sequence: " + getGameSequence().toString());
+                    Log.i("4020debug","User sequence: " + getUserSequence().toString());
+                    if (getUserSequenceChar((getUserSequence().size())) == getGameSequenceChar((getGameSequence().size()))) {
+
                         // do nothing
                         Log.i("4020debug", "User matched n button");    //TODO DELETE THIS
                     } else {
+
                         // else user missed n in sequence
                         // initiate game over
                         gameOver();
                     }
                 } else {
+
                     // Increment the users score
                     setScore(getScore() + 1);
+
                     // Add to game sequence
                     addToGameSequence(1);
+
                     // Clear user sequence
                     getUserSequence().clear();
+
                     // Play game sequence
                     PlaySequence playSequence = new PlaySequence(getGameSequence());
                     playSequence.execute();
