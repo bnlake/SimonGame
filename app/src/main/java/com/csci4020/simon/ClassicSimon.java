@@ -70,13 +70,8 @@ public class ClassicSimon extends Game {
 
     protected void startClassicGame() {
         super.startGame();
-        // Reset items
-        super.setScore(0);
-        super.getGameSequence().clear();
-        super.getUserSequence().clear();
         // Initiate the game sequence
         super.addToGameSequence(4); //TODO THIS IS ONLY A DEMO SIZE
-        super.setGameStarted(true);
         // Play the sequence for the user
         PlaySequence playSequence = new PlaySequence(getGameSequence());
         playSequence.execute();

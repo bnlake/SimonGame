@@ -285,5 +285,9 @@ public abstract class Game extends Activity
     protected final void startGame()
     {
         findViewById(R.id.btnStartGame).setVisibility(View.INVISIBLE);
+        this.setScore(0);
+        this.getGameSequence().clear();
+        this.getUserSequence().clear();
+        this.setGameStarted(true);
     }
 }
