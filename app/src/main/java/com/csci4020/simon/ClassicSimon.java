@@ -142,8 +142,10 @@ public class ClassicSimon extends Game {
          */
         @Override
         public void onClick(View view) {
-            GameButtonPress gameButtonPress = new GameButtonPress();
-            gameButtonPress.execute();
+            if (isGameStarted()) {
+                GameButtonPress gameButtonPress = new GameButtonPress();
+                gameButtonPress.execute();
+            }
         }
 
         /**
