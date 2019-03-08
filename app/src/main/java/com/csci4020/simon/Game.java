@@ -278,4 +278,12 @@ public abstract class Game extends Activity
             }
         }
     }
+
+    /**
+     * Global game actions that must be performed when a game is started
+     */
+    protected final void startGame()
+    {
+        findViewById(R.id.btnStartGame).setVisibility(View.INVISIBLE);
+    }
 }

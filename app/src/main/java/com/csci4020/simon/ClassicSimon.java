@@ -43,7 +43,7 @@ public class ClassicSimon extends Game {
         findViewById(R.id.btnStartGame).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                startGame();
+                startClassicGame();
             }
         });
     }
@@ -68,12 +68,12 @@ public class ClassicSimon extends Game {
      * Change text when user presses a button and check if a player has win.
      */
 
-    private void startGame() {
-        findViewById(R.id.btnStartGame).setVisibility(View.INVISIBLE);
+    protected void startClassicGame() {
+        super.startGame();
         // Reset items
-        setScore(0);
-        getGameSequence().clear();
-        getUserSequence().clear();
+        super.setScore(0);
+        super.getGameSequence().clear();
+        super.getUserSequence().clear();
         // Initiate the game sequence
         super.addToGameSequence(4); //TODO THIS IS ONLY A DEMO SIZE
         super.setGameStarted(true);
@@ -84,12 +84,13 @@ public class ClassicSimon extends Game {
 
     private void gameOver() {
         super.setGameStarted(false);
+
         Toast.makeText(this, "Incorrect, Game Over!", Toast.LENGTH_SHORT).show();
     }
 
     // TODO When would there be a difference between restart and start?
     private void restartGame() {
-        startGame();
+        startClassicGame();
     }
 
     /**
