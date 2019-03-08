@@ -80,6 +80,7 @@ public class ClassicSimon extends Game {
      * Begin logic when a game is finished
      */
     private void gameOver() {
+        Log.i("4020debug", "User scored: " + getScore());
         Toast.makeText(this, "Game Over!", Toast.LENGTH_SHORT).show();
         super.endGame();
     }
@@ -148,17 +149,29 @@ public class ClassicSimon extends Game {
                 gameButtonPress.execute();
                 // Retrieve button "tag"
                 // Add to user sequence
-                // Check if position n in user sequence matching game sequence
-                    // If user sequence size is < game sequence size
-                        // if position n matches in both sequences
-                            // do nothing
+                addToUserSequence(((Character) view.getTag()));
+                // If user sequence size is < game sequence size
+                if (getUserSequence().size() < getGameSequence().size()) {
+                    // if position n matches in both sequences
+                    if (getUserSequenceChar((getUserSequence().size() - 1)) == getGameSequenceChar((getGameSequence().size() - 1))) {
+                        // do nothing
+                        Log.i("4020debug", "User matched n button");    //TODO DELETE THIS
+                    } else {
                         // else user missed n in sequence
-                            // initiate game over
-                    // else if user sequence size is = game sequence size
-                        // Increment the users score
-                        // Add to game sequence
-                        // Clear user sequence
-                        // Play game sequence
+                        // initiate game over
+                        gameOver();
+                    }
+                } else {
+                    // Increment the users score
+                    setScore(getScore() + 1);
+                    // Add to game sequence
+                    addToGameSequence(1);
+                    // Clear user sequence
+                    getUserSequence().clear();
+                    // Play game sequence
+                    PlaySequence playSequence = new PlaySequence(getGameSequence());
+                    playSequence.execute();
+                }
             }
         }
 
