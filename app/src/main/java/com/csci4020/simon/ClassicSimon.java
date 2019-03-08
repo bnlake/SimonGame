@@ -65,9 +65,8 @@ public class ClassicSimon extends Game {
     }
 
     /**
-     * Change text when user presses a button and check if a player has win.
+     * Begin logic when a user starts a classic simon game
      */
-
     protected void startClassicGame() {
         super.startGame();
         // Initiate the game sequence
@@ -77,15 +76,19 @@ public class ClassicSimon extends Game {
         playSequence.execute();
     }
 
+    /**
+     * Begin logic when a game is finished
+     */
     private void gameOver() {
-        super.setGameStarted(false);
-
-        Toast.makeText(this, "Incorrect, Game Over!", Toast.LENGTH_SHORT).show();
+        Toast.makeText(this, "Game Over!", Toast.LENGTH_SHORT).show();
+        super.endGame();
     }
 
-    // TODO When would there be a difference between restart and start?
+    /**
+     * Method for when a player manually requests a restart
+     */
     private void restartGame() {
-        startClassicGame();
+        super.endGame();
     }
 
     /**

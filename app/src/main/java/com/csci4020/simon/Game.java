@@ -290,4 +290,13 @@ public abstract class Game extends Activity
         this.getUserSequence().clear();
         this.setGameStarted(true);
     }
+
+    /**
+     * Global game actions when a game has finished
+     */
+    protected final void endGame()
+    {
+        findViewById(R.id.btnStartGame).setVisibility(View.VISIBLE);
+        this.setGameStarted(false);
+    }
 }
