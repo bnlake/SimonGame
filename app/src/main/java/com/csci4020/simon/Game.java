@@ -49,6 +49,21 @@ public abstract class Game extends Activity
      */
     public static final char[] buttonChoices = {'r', 'g', 'b', 'y'};
 
+    /**
+     * Boolean used to identify if a game is in progress or not
+     * This prevents scoring and game checking to run if user presses
+     * a game button before the game is started
+     */
+    private boolean isGameStarted = false;
+    public boolean isGameStarted() {
+        return isGameStarted;
+    }
+
+    public void setGameStarted(boolean gameStarted) {
+        isGameStarted = gameStarted;
+    }
+
+
 
     /**
      * Integer ID of loaded sound effects in a sound pool
@@ -124,12 +139,12 @@ public abstract class Game extends Activity
      * @return boolean User guess matches Game sequence
      */
     public boolean addToUserSequence(char x) {
-        userSequence.add(x);
-        return (userSequence.get(userSequence.size() - 1) == userSequence.get(userSequence.size() - 1));
-    }
+     userSequence.add(x);
+     return (userSequence.get(userSequence.size() - 1) == userSequence.get(userSequence.size() - 1));
+     }
 
 
-    /**
+     /**
      * Get character at position n from User sequence
      *
      * @param n int

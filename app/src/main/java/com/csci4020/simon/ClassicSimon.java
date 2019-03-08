@@ -76,14 +76,15 @@ public class ClassicSimon extends Game {
         getUserSequence().clear();
         // Initiate the game sequence
         super.addToGameSequence(4); //TODO THIS IS ONLY A DEMO SIZE
+        super.setGameStarted(true);
         // Play the sequence for the user
         PlaySequence playSequence = new PlaySequence(getGameSequence());
         playSequence.execute();
     }
 
     private void gameOver() {
-
-        Toast.makeText(this, "Game Over!", Toast.LENGTH_SHORT).show();
+        super.setGameStarted(false);
+        Toast.makeText(this, "Incorrect, Game Over!", Toast.LENGTH_SHORT).show();
     }
 
     // TODO When would there be a difference between restart and start?
