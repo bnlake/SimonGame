@@ -143,8 +143,22 @@ public class ClassicSimon extends Game {
         @Override
         public void onClick(View view) {
             if (isGameStarted()) {
+                // Run thread for button sound and highlight
                 GameButtonPress gameButtonPress = new GameButtonPress();
                 gameButtonPress.execute();
+                // Retrieve button "tag"
+                // Add to user sequence
+                // Check if position n in user sequence matching game sequence
+                    // If user sequence size is < game sequence size
+                        // if position n matches in both sequences
+                            // do nothing
+                        // else user missed n in sequence
+                            // initiate game over
+                    // else if user sequence size is = game sequence size
+                        // Increment the users score
+                        // Add to game sequence
+                        // Clear user sequence
+                        // Play game sequence
             }
         }
 
