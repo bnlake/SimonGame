@@ -1,5 +1,6 @@
 package com.csci4020.simon;
 
+import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.AsyncTask;
@@ -7,6 +8,7 @@ import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
 import android.widget.ImageButton;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import java.util.LinkedList;
@@ -14,7 +16,14 @@ import java.util.LinkedList;
 public class ClassicSimon extends Game
 {
 	// TODO NEED TO FIND A WAY TO STORE NECESSARY INFO FOR APP ROTATIONS
-	SharedPreferences sharedPreferences;
+
+    private int savedHighScore;
+
+    private String highScoreKey = "HIGHSCORE";
+    private String highScorePref = "SHAREDPREFERENCE";
+
+    private TextView highScoreTextView;
+
 	/**
 	 * Game Buttons
 	 */
@@ -56,7 +65,13 @@ public class ClassicSimon extends Game
 				startClassicGame();
 			}
 		});
-	}
+
+		// Assign listener to high score text view
+        highScoreTextView = findViewById(R.id.highScoreTextView);
+
+        loadHighScore();
+        updateHighScoreTextView();
+    }
 
 	@Override
 	protected void onResume()
@@ -89,12 +104,21 @@ public class ClassicSimon extends Game
 	}
 
 	/**
-	 * Begin logic when a game is finished
+	 * Begin logic when a game is finished.
+     * Displays messages and saves the high score
 	 */
 	private void gameOver()
 	{
 		Log.i("4020debug", "User scored: " + getScore());
 		Toast.makeText(this, "Game Over!", Toast.LENGTH_SHORT).show();
+
+        if (getScore() > savedHighScore) {
+            saveHighScore();
+            loadHighScore();
+            updateHighScoreTextView();
+        }
+
+
 		super.endGame();
 	}
 
@@ -336,4 +360,24 @@ public class ClassicSimon extends Game
 			return null;
 		}
 	}
+
+	private void saveHighScore() {
+
+	    SharedPreferences sharedPreferences = getSharedPreferences(highScorePref, MODE_PRIVATE);
+	    SharedPreferences.Editor editor = sharedPreferences.edit();
+
+	    editor.putInt(highScoreKey, getScore());
+	    editor.apply();
+    }
+
+    private void loadHighScore() {
+
+        SharedPreferences sharedPreferences = getSharedPreferences(highScorePref, MODE_PRIVATE);
+        savedHighScore = sharedPreferences.getInt(highScoreKey, 0);
+    }
+
+    private void updateHighScoreTextView() {
+
+	    highScoreTextView.setText("High Score: " + savedHighScore);
+    }
 }

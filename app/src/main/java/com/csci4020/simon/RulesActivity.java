@@ -13,13 +13,10 @@ public class RulesActivity extends Activity {
 
         setContentView(R.layout.activity_rules);
 
-//        final View view = findViewById(R.id.view);
-
         findViewById(R.id.view).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                     v.setBackgroundColor(Color.RED);
-//                v.setBackgroundColor(Color.RED);
             }
         });
 
