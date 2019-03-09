@@ -22,4 +22,5 @@
     <string name="classicGameRules">Press the lenses in exact order that the game displays!</string>
     <string name="rewindGameRules">Repeat each sequence backwards, from the last signal to the first!</string>
     <string name="surpriseGameRules">Every lens has the same sound and color. Without any sound or color, repeat the pattern by location!</string>
+    <string name="footerDescription">Enjoy and share with all your friends!</string>
 </resources>
