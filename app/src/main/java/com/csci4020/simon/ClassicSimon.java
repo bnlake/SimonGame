@@ -17,7 +17,6 @@ public class ClassicSimon extends Game
 {
 	// TODO NEED TO FIND A WAY TO STORE NECESSARY INFO FOR APP ROTATIONS
 
-    private int highScore;
     private int savedHighScore;
 
     private String highScoreKey = "HIGHSCORE";
@@ -111,9 +110,13 @@ public class ClassicSimon extends Game
 	private void gameOver()
 	{
 		Log.i("4020debug", "User scored: " + getScore());
-//		Toast.makeText(this, "Game Over!", Toast.LENGTH_SHORT).show();
+		Toast.makeText(this, "Game Over!", Toast.LENGTH_SHORT).show();
 
-        
+        if (getScore() > savedHighScore) {
+            saveHighScore();
+            loadHighScore();
+            updateHighScoreTextView();
+        }
 
 
 		super.endGame();
@@ -216,7 +219,6 @@ public class ClassicSimon extends Game
 				{
 					// Increment the users score
 					setScore(getScore() + 1);
-					highScore += 1;
 
 					// Add to game sequence
 					addToGameSequence(1);
@@ -364,18 +366,13 @@ public class ClassicSimon extends Game
 	    SharedPreferences sharedPreferences = getSharedPreferences(highScorePref, MODE_PRIVATE);
 	    SharedPreferences.Editor editor = sharedPreferences.edit();
 
-	    editor.putInt(highScoreKey, highScore);
-//        editor.putInt(highScoreKey, getScore());
-
+	    editor.putInt(highScoreKey, getScore());
 	    editor.apply();
-
-	    Toast.makeText(this, "Highscore saved", Toast.LENGTH_SHORT).show();
     }
 
     private void loadHighScore() {
 
         SharedPreferences sharedPreferences = getSharedPreferences(highScorePref, MODE_PRIVATE);
-//        highScore = sharedPreferences.getInt(highScoreKey, 0);
         savedHighScore = sharedPreferences.getInt(highScoreKey, 0);
     }
 
