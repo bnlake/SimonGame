@@ -1,5 +1,6 @@
 package com.csci4020.simon;
 
+import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.AsyncTask;
@@ -15,6 +16,11 @@ public class ClassicSimon extends Game
 {
 	// TODO NEED TO FIND A WAY TO STORE NECESSARY INFO FOR APP ROTATIONS
 	SharedPreferences sharedPreferences;
+
+	private int highScore;
+
+    private String highScorePref = "HIGHSCORE";
+
 	/**
 	 * Game Buttons
 	 */
@@ -56,7 +62,7 @@ public class ClassicSimon extends Game
 				startClassicGame();
 			}
 		});
-	}
+    }
 
 	@Override
 	protected void onResume()
@@ -336,4 +342,16 @@ public class ClassicSimon extends Game
 			return null;
 		}
 	}
+
+	private void saveHighScore() {
+
+	    SharedPreferences sharedPreferences = getSharedPreferences("sharedstuff", MODE_PRIVATE);
+	    SharedPreferences.Editor editor = sharedPreferences.edit();
+
+	    editor.putInt(highScorePref, highScore);
+
+	    editor.apply();
+
+	    Toast.makeText(this, "Highscore saved", Toast.LENGTH_SHORT);
+    }
 }
