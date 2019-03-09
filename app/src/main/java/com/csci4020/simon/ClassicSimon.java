@@ -19,7 +19,8 @@ public class ClassicSimon extends Game
 
 	private int highScore;
 
-    private String highScorePref = "HIGHSCORE";
+    private String highScoreKey = "HIGHSCORE";
+    private String highScorePref = "SHAREDPREFERENCE";
 
 	/**
 	 * Game Buttons
@@ -345,13 +346,19 @@ public class ClassicSimon extends Game
 
 	private void saveHighScore() {
 
-	    SharedPreferences sharedPreferences = getSharedPreferences("sharedstuff", MODE_PRIVATE);
+	    SharedPreferences sharedPreferences = getSharedPreferences(highScorePref, MODE_PRIVATE);
 	    SharedPreferences.Editor editor = sharedPreferences.edit();
 
-	    editor.putInt(highScorePref, highScore);
+	    editor.putInt(highScoreKey, highScore);
 
 	    editor.apply();
 
 	    Toast.makeText(this, "Highscore saved", Toast.LENGTH_SHORT);
+    }
+
+    private void loadHighScore() {
+
+        SharedPreferences sharedPreferences = getSharedPreferences(highScorePref, MODE_PRIVATE);
+        highScore = sharedPreferences.getInt(highScoreKey, 0);
     }
 }
