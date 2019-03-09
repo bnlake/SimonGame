@@ -42,8 +42,6 @@ public class MainActivity extends Activity
             }
         });
 
-        ((TextView) findViewById(R.id.textview_high_score)).setText("High Score: " + highScore);
-
         findViewById(R.id.button_classic).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
