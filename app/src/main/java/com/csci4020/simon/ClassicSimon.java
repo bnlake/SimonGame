@@ -374,6 +374,9 @@ public class ClassicSimon extends Game
 
         SharedPreferences sharedPreferences = getSharedPreferences(highScorePref, MODE_PRIVATE);
         savedHighScore = sharedPreferences.getInt(highScoreKey, 0);
+
+        // when we want to reset high score to test project in simulator
+//        sharedPreferences.edit().clear().commit();
     }
 
     private void updateHighScoreTextView() {
