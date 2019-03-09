@@ -23,7 +23,7 @@ public abstract class Game extends Activity
      * Game Time. Is the basis for button highlight, pause, and wait for user input.
      * Time is in milliseconds
      */
-    protected int GAME_INTERVAL_TIME = 1000;
+    protected int GAME_INTERVAL_TIME = 800;
 
 
     /**
