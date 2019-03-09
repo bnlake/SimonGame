@@ -13,7 +13,7 @@ import java.util.LinkedList;
 
 public class ClassicSimon extends Game
 {
-
+	// TODO NEED TO FIND A WAY TO STORE NECESSARY INFO FOR APP ROTATIONS
 	SharedPreferences sharedPreferences;
 	/**
 	 * Game Buttons
@@ -28,6 +28,8 @@ public class ClassicSimon extends Game
 	{
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_game);
+
+		// TODO NEED TO LOOK FOR BOOLEAN FROM INTENT TO EITHER MUTE THE GAME OR NOT
 
 		// Assign listeners to menu buttons
 		findViewById(R.id.btn_restartgame).setOnClickListener(new View.OnClickListener()
@@ -191,7 +193,6 @@ public class ClassicSimon extends Game
 				}
 				else
 				{
-
 					// Increment the users score
 					setScore(getScore() + 1);
 
