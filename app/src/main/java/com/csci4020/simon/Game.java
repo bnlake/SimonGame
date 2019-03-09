@@ -29,7 +29,7 @@ public abstract class Game extends Activity
     /**
      * Game speed multiplier. Can be used to slow down or speed up a Game
      */
-    protected float GAME_SPEED = 4.0f;
+    protected float GAME_SPEED = 1.0f;
 
     /**
      * Used to silence sound effects during a game
@@ -140,7 +140,7 @@ public abstract class Game extends Activity
      */
     public boolean addToUserSequence(char x) {
      userSequence.add(x);
-     return (userSequence.get(userSequence.size() - 1) == userSequence.get(userSequence.size() - 1));
+     return (userSequence.get(userSequence.size() - 1) == gameSequence.get(userSequence.size() - 1));
      }
 
 
@@ -151,7 +151,7 @@ public abstract class Game extends Activity
      * @return char
      */
     public char getUserSequenceChar(int n) {
-        return gameSequence.get(n);
+        return userSequence.get(n);
     }
 
 

@@ -70,7 +70,7 @@ public class ClassicSimon extends Game {
     protected void startClassicGame() {
         super.startGame();
         // Initiate the game sequence
-        super.addToGameSequence(4); //TODO THIS IS ONLY A DEMO SIZE
+        super.addToGameSequence(1);
         // Play the sequence for the user
         PlaySequence playSequence = new PlaySequence(getGameSequence());
         playSequence.execute();
@@ -152,19 +152,13 @@ public class ClassicSimon extends Game {
                 // Add to user sequence
                 addToUserSequence(gameButton.getButtonChar());
 
-                //todo delete
-                Log.i("4020debug","Game sequence size: " + getGameSequence().size());
-                Log.i("4020debug","User sequence size: " + getUserSequence().size());
                 // If user sequence size is < game sequence size
                 if (getUserSequence().size() < getGameSequence().size()) {
 
                     // if position n matches in both sequences
-                    Log.i("4020debug","Game sequence: " + getGameSequence().toString());
-                    Log.i("4020debug","User sequence: " + getUserSequence().toString());
-                    if (getUserSequenceChar((getUserSequence().size())) == getGameSequenceChar((getGameSequence().size()))) {
+                    if (getUserSequenceChar(getUserSequence().size() - 1) == getGameSequenceChar(getUserSequence().size() - 1)) {
 
                         // do nothing
-                        Log.i("4020debug", "User matched n button");    //TODO DELETE THIS
                     } else {
 
                         // else user missed n in sequence
