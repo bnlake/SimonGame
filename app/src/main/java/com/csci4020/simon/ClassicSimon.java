@@ -94,17 +94,25 @@ public class ClassicSimon extends Game
 	protected void onResume()
 	{
 		super.onResume();
-		GAME_BUTTON_BLUE = new GameButton(((ImageButton) findViewById(R.id.btnBlue)), SOUND_EFFECT_BLUE, R.color.btnBlue, R.color.btnBlueHighlight);
-		GAME_BUTTON_RED = new GameButton(((ImageButton) findViewById(R.id.btnRed)), SOUND_EFFECT_RED, R.color.btnRed, R.color.btnRedHighlight);
-		GAME_BUTTON_GREEN = new GameButton(((ImageButton) findViewById(R.id.btnGreen)), SOUND_EFFECT_GREEN, R.color.btnGreen, R.color.btnGreenHighlight);
-		GAME_BUTTON_YELLOW = new GameButton(((ImageButton) findViewById(R.id.btnYellow)), SOUND_EFFECT_YELLOW, R.color.btnYellow, R.color.btnYellowHighlight);
 
-		// Create the listeners for Game buttons. Assign sound effect appropriately
-		// Need to put these in onResume since the soundpool wouldn't have been created until now
-		GAME_BUTTON_BLUE.getImageButton().setOnClickListener(new GameButtonListener(GAME_BUTTON_BLUE));
-		GAME_BUTTON_GREEN.getImageButton().setOnClickListener(new GameButtonListener(GAME_BUTTON_GREEN));
-		GAME_BUTTON_RED.getImageButton().setOnClickListener(new GameButtonListener(GAME_BUTTON_RED));
-		GAME_BUTTON_YELLOW.getImageButton().setOnClickListener(new GameButtonListener(GAME_BUTTON_YELLOW));
+		if (!MainActivity.soundOn) {
+            GAME_BUTTON_BLUE = new GameButton(((ImageButton) findViewById(R.id.btnBlue)), SOUND_EFFECT_BLUE, R.color.btnBlue, R.color.btnBlueHighlight);
+            GAME_BUTTON_RED = new GameButton(((ImageButton) findViewById(R.id.btnRed)), SOUND_EFFECT_BLUE, R.color.btnBlue, R.color.btnBlueHighlight);
+            GAME_BUTTON_GREEN = new GameButton(((ImageButton) findViewById(R.id.btnGreen)), SOUND_EFFECT_BLUE, R.color.btnBlue, R.color.btnBlueHighlight);
+            GAME_BUTTON_YELLOW = new GameButton(((ImageButton) findViewById(R.id.btnYellow)), SOUND_EFFECT_BLUE, R.color.btnBlue, R.color.btnBlueHighlight);
+        } else {
+            GAME_BUTTON_BLUE = new GameButton(((ImageButton) findViewById(R.id.btnBlue)), SOUND_EFFECT_BLUE, R.color.btnBlue, R.color.btnBlueHighlight);
+            GAME_BUTTON_RED = new GameButton(((ImageButton) findViewById(R.id.btnRed)), SOUND_EFFECT_RED, R.color.btnRed, R.color.btnRedHighlight);
+            GAME_BUTTON_GREEN = new GameButton(((ImageButton) findViewById(R.id.btnGreen)), SOUND_EFFECT_GREEN, R.color.btnGreen, R.color.btnGreenHighlight);
+            GAME_BUTTON_YELLOW = new GameButton(((ImageButton) findViewById(R.id.btnYellow)), SOUND_EFFECT_YELLOW, R.color.btnYellow, R.color.btnYellowHighlight);
+        }
+        
+            // Create the listeners for Game buttons. Assign sound effect appropriately
+            // Need to put these in onResume since the soundpool wouldn't have been created until now
+            GAME_BUTTON_BLUE.getImageButton().setOnClickListener(new GameButtonListener(GAME_BUTTON_BLUE));
+            GAME_BUTTON_GREEN.getImageButton().setOnClickListener(new GameButtonListener(GAME_BUTTON_GREEN));
+            GAME_BUTTON_RED.getImageButton().setOnClickListener(new GameButtonListener(GAME_BUTTON_RED));
+            GAME_BUTTON_YELLOW.getImageButton().setOnClickListener(new GameButtonListener(GAME_BUTTON_YELLOW));
 	}
 
 	/**
