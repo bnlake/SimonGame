@@ -40,6 +40,23 @@ public class ClassicSimon extends Game
 
 		// TODO NEED TO LOOK FOR BOOLEAN FROM INTENT TO EITHER MUTE THE GAME OR NOT
 
+        // If soundOn is false, means we've selected Surprise Simon.
+        if (!MainActivity.soundOn) {
+
+            Toast.makeText(this, "Playing SURPRISE", Toast.LENGTH_SHORT).show();
+        }
+
+        // TODO: - Could possibly use this to separate the different methods and replace needing a boolean for muting the game or not
+        if (MainActivity.gameMode.equals(MainActivity.CLASSIC_GAME)) {
+
+        } else if (MainActivity.gameMode.equals(MainActivity.REWIND_GAME)) {
+
+        } else if (MainActivity.gameMode.equals(MainActivity.SURPRISE_GAME)) {
+
+        }
+
+
+
 		// Assign listeners to menu buttons
 		findViewById(R.id.btn_restartgame).setOnClickListener(new View.OnClickListener()
 		{
@@ -112,6 +129,7 @@ public class ClassicSimon extends Game
 		Log.i("4020debug", "User scored: " + getScore());
 		Toast.makeText(this, "Game Over!", Toast.LENGTH_SHORT).show();
 
+		// If current score is greater than the set high score, update the new high score
         if (getScore() > savedHighScore) {
             saveHighScore();
             loadHighScore();
@@ -155,6 +173,8 @@ public class ClassicSimon extends Game
 	@Override
 	public void onClick(View v)
 	{
+
+
 	}
 
 
