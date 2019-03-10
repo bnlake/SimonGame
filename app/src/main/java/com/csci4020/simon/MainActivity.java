@@ -9,13 +9,15 @@ import android.widget.TextView;
 public class MainActivity extends Activity
 {
 
-    public static int highScore;
+    // MARK: - Properties
+    public static boolean soundOn = true;
 
     // Game Modes
     public static String gameMode = "classic";
     public static final String CLASSIC_GAME = "classic";
     public static final String SURPRISE_GAME = "surprise";
     public static final String REWIND_GAME = "rewind";
+
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState)
@@ -56,6 +58,7 @@ public class MainActivity extends Activity
             public void onClick(View v) {
 
                 gameMode = SURPRISE_GAME;
+                soundOn = false;
                 startActivity(new Intent(getApplicationContext(), ClassicSimon.class));
             }
         });
