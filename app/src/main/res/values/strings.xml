@@ -7,8 +7,8 @@
     <string name="lblMenuAboutApp">About App</string>
 
     <!--TODO NEED TO FINISH ABOUT PARAGRAPH-->
-    <string name="textAboutApp">Authors: Han &amp; Brian\n\nSimon is a game of memory invented by Ralph H. Baer and Howard J. Morrison.\n\n
-        The game creates a series of tones and lights and requires the user to repeat the sequence.
+    <string name="textAboutApp">Authors: Han &amp; Brian\n\nSimon is a game of memory invented by Ralph H. Baer and Howard J. Morrison.\n
+        \nThe game creates a series of tones and lights and requires the user to repeat the sequence.
         If the user can repeat the sequence made by the game, the series becomes harder each time.
         Once the user fails, the game is over.
         We have created our app so people may enjoy some variation to the standard game. Play either the Random or Numerical variant.</string>
