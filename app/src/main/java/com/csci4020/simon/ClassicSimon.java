@@ -39,13 +39,6 @@ public class ClassicSimon extends Game
 		setContentView(R.layout.activity_game);
 
 		// TODO NEED TO LOOK FOR BOOLEAN FROM INTENT TO EITHER MUTE THE GAME OR NOT
-
-        // If soundOn is false, means we've selected Surprise Simon.
-        if (!MainActivity.soundOn) {
-
-            Toast.makeText(this, "Playing SURPRISE", Toast.LENGTH_SHORT).show();
-        }
-
         // TODO: - Could possibly use this to separate the different methods and replace needing a boolean for muting the game or not
         if (MainActivity.gameMode.equals(MainActivity.CLASSIC_GAME)) {
 
@@ -54,8 +47,6 @@ public class ClassicSimon extends Game
         } else if (MainActivity.gameMode.equals(MainActivity.SURPRISE_GAME)) {
 
         }
-
-
 
 		// Assign listeners to menu buttons
 		findViewById(R.id.btn_restartgame).setOnClickListener(new View.OnClickListener()
@@ -95,18 +86,20 @@ public class ClassicSimon extends Game
 	{
 		super.onResume();
 
-		if (!MainActivity.soundOn) {
+        // Surprise Mode will have the same button color, highlighting, and sound for each button
+		if (MainActivity.gameMode == MainActivity.SURPRISE_GAME) {
             GAME_BUTTON_BLUE = new GameButton(((ImageButton) findViewById(R.id.btnBlue)), SOUND_EFFECT_BLUE, R.color.btnBlue, R.color.btnBlueHighlight);
             GAME_BUTTON_RED = new GameButton(((ImageButton) findViewById(R.id.btnRed)), SOUND_EFFECT_BLUE, R.color.btnBlue, R.color.btnBlueHighlight);
             GAME_BUTTON_GREEN = new GameButton(((ImageButton) findViewById(R.id.btnGreen)), SOUND_EFFECT_BLUE, R.color.btnBlue, R.color.btnBlueHighlight);
             GAME_BUTTON_YELLOW = new GameButton(((ImageButton) findViewById(R.id.btnYellow)), SOUND_EFFECT_BLUE, R.color.btnBlue, R.color.btnBlueHighlight);
         } else {
+		    // Setup for button color, highlighting, and sound
             GAME_BUTTON_BLUE = new GameButton(((ImageButton) findViewById(R.id.btnBlue)), SOUND_EFFECT_BLUE, R.color.btnBlue, R.color.btnBlueHighlight);
             GAME_BUTTON_RED = new GameButton(((ImageButton) findViewById(R.id.btnRed)), SOUND_EFFECT_RED, R.color.btnRed, R.color.btnRedHighlight);
             GAME_BUTTON_GREEN = new GameButton(((ImageButton) findViewById(R.id.btnGreen)), SOUND_EFFECT_GREEN, R.color.btnGreen, R.color.btnGreenHighlight);
             GAME_BUTTON_YELLOW = new GameButton(((ImageButton) findViewById(R.id.btnYellow)), SOUND_EFFECT_YELLOW, R.color.btnYellow, R.color.btnYellowHighlight);
         }
-        
+
             // Create the listeners for Game buttons. Assign sound effect appropriately
             // Need to put these in onResume since the soundpool wouldn't have been created until now
             GAME_BUTTON_BLUE.getImageButton().setOnClickListener(new GameButtonListener(GAME_BUTTON_BLUE));
@@ -389,6 +382,9 @@ public class ClassicSimon extends Game
 		}
 	}
 
+    /**
+     * Using SharedPreferences it saves the high score
+     */
 	private void saveHighScore() {
 
 	    SharedPreferences sharedPreferences = getSharedPreferences(highScorePref, MODE_PRIVATE);
@@ -398,15 +394,22 @@ public class ClassicSimon extends Game
 	    editor.apply();
     }
 
+    /**
+     * Loads the highest score that has been set
+     */
     private void loadHighScore() {
 
         SharedPreferences sharedPreferences = getSharedPreferences(highScorePref, MODE_PRIVATE);
         savedHighScore = sharedPreferences.getInt(highScoreKey, 0);
 
-        // when we want to reset high score to test project in simulator
+        // when we want to reset high score Sharedpreferences to test project in simulator
 //        sharedPreferences.edit().clear().commit();
     }
 
+
+    /**
+     * Updates the high score TextView to the latest high score
+     */
     private void updateHighScoreTextView() {
 
 	    highScoreTextView.setText("High Score: " + savedHighScore);
