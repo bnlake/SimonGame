@@ -17,8 +17,10 @@ public class ClassicSimon extends Game
 {
 	// TODO NEED TO FIND A WAY TO STORE NECESSARY INFO FOR APP ROTATIONS
 
+    // The saved high score in SharedPreferences.
     private int savedHighScore;
 
+    // SharedPreferences key and preference name
     private String highScoreKey = "HIGHSCORE";
     private String highScorePref = "SHAREDPREFERENCE";
 
