@@ -93,10 +93,10 @@ public class SurpriseSimon extends Game
 		super.onResume();
 
 		// Setup for button color, highlighting, and sound
-		GAME_BUTTON_BLUE = new GameButton(((ImageButton) findViewById(R.id.btnBlue)), SOUND_EFFECT_BLUE, R.color.btnBlue, R.color.btnBlueHighlight);
-		GAME_BUTTON_RED = new GameButton(((ImageButton) findViewById(R.id.btnRed)), SOUND_EFFECT_RED, R.color.btnRed, R.color.btnRedHighlight);
-		GAME_BUTTON_GREEN = new GameButton(((ImageButton) findViewById(R.id.btnGreen)), SOUND_EFFECT_GREEN, R.color.btnGreen, R.color.btnGreenHighlight);
-		GAME_BUTTON_YELLOW = new GameButton(((ImageButton) findViewById(R.id.btnYellow)), SOUND_EFFECT_YELLOW, R.color.btnYellow, R.color.btnYellowHighlight);
+		GAME_BUTTON_BLUE = new GameButton(((ImageButton) findViewById(R.id.btnBlue)), SOUND_EFFECT_BLUE, R.color.colorSurpriseBase, R.color.colorSurpriseHighlight);
+		GAME_BUTTON_RED = new GameButton(((ImageButton) findViewById(R.id.btnRed)), SOUND_EFFECT_RED, R.color.colorSurpriseBase, R.color.colorSurpriseHighlight);
+		GAME_BUTTON_GREEN = new GameButton(((ImageButton) findViewById(R.id.btnGreen)), SOUND_EFFECT_GREEN, R.color.colorSurpriseBase, R.color.colorSurpriseHighlight);
+		GAME_BUTTON_YELLOW = new GameButton(((ImageButton) findViewById(R.id.btnYellow)), SOUND_EFFECT_YELLOW, R.color.colorSurpriseBase, R.color.colorSurpriseHighlight);
 
 
 		// Create the listeners for Game buttons. Assign sound effect appropriately
