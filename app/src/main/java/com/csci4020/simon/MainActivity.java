@@ -59,7 +59,7 @@ public class MainActivity extends Activity
 
                 gameMode = SURPRISE_GAME;
                 soundOn = false;
-                startActivity(new Intent(getApplicationContext(), ClassicSimon.class));
+                startActivity(new Intent(getApplicationContext(), SurpriseSimon.class));
             }
         });
 
