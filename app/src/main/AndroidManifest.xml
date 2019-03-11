@@ -18,9 +18,9 @@
             </intent-filter>
         </activity>
         <activity android:name=".AboutActivity"></activity>
-        <activity android:name=".Game"></activity>
         <activity android:name=".ClassicSimon"></activity>
         <activity android:name=".RulesActivity"></activity>
+        <activity android:name=".SurpriseSimon"></activity>
     </application>
 
 </manifest>

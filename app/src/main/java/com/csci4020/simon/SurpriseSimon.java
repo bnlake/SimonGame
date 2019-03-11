@@ -1,6 +1,5 @@
 package com.csci4020.simon;
 
-import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.AsyncTask;
@@ -13,18 +12,18 @@ import android.widget.Toast;
 
 import java.util.LinkedList;
 
-public class ClassicSimon extends Game
+public class SurpriseSimon extends Game
 {
 	// TODO NEED TO FIND A WAY TO STORE NECESSARY INFO FOR APP ROTATIONS
 
-    // The saved high score in SharedPreferences.
-    private int savedHighScore;
+	// The saved high score in SharedPreferences.
+	private int savedHighScore;
 
-    // SharedPreferences key and preference name
-    private String highScoreKey = "HIGHSCORE";
-    private String highScorePref = "SHAREDPREFERENCE";
+	// SharedPreferences key and preference name
+	private String highScoreKey = "HIGHSCORE";
+	private String highScorePref = "SHAREDPREFERENCE";
 
-    private TextView highScoreTextView;
+	private TextView highScoreTextView;
 
 	/**
 	 * Game Buttons
@@ -41,14 +40,19 @@ public class ClassicSimon extends Game
 		setContentView(R.layout.activity_game);
 
 		// TODO NEED TO LOOK FOR BOOLEAN FROM INTENT TO EITHER MUTE THE GAME OR NOT
-        // TODO: - Could possibly use this to separate the different methods and replace needing a boolean for muting the game or not
-        if (MainActivity.gameMode.equals(MainActivity.CLASSIC_GAME)) {
+		// TODO: - Could possibly use this to separate the different methods and replace needing a boolean for muting the game or not
+		if (MainActivity.gameMode.equals(MainActivity.CLASSIC_GAME))
+		{
 
-        } else if (MainActivity.gameMode.equals(MainActivity.REWIND_GAME)) {
+		}
+		else if (MainActivity.gameMode.equals(MainActivity.REWIND_GAME))
+		{
 
-        } else if (MainActivity.gameMode.equals(MainActivity.SURPRISE_GAME)) {
+		}
+		else if (MainActivity.gameMode.equals(MainActivity.SURPRISE_GAME))
+		{
 
-        }
+		}
 
 		// Assign listeners to menu buttons
 		findViewById(R.id.btn_restartgame).setOnClickListener(new View.OnClickListener()
@@ -77,37 +81,30 @@ public class ClassicSimon extends Game
 		});
 
 		// Assign listener to high score text view
-        highScoreTextView = findViewById(R.id.highScoreTextView);
+		highScoreTextView = findViewById(R.id.highScoreTextView);
 
-        loadHighScore();
-        updateHighScoreTextView();
-    }
+		loadHighScore();
+		updateHighScoreTextView();
+	}
 
 	@Override
 	protected void onResume()
 	{
 		super.onResume();
 
-        // Surprise Mode will have the same button color, highlighting, and sound for each button
-		if (MainActivity.gameMode == MainActivity.SURPRISE_GAME) {
-            GAME_BUTTON_BLUE = new GameButton(((ImageButton) findViewById(R.id.btnBlue)), SOUND_EFFECT_BLUE, R.color.btnBlue, R.color.btnBlueHighlight);
-            GAME_BUTTON_RED = new GameButton(((ImageButton) findViewById(R.id.btnRed)), SOUND_EFFECT_BLUE, R.color.btnBlue, R.color.btnBlueHighlight);
-            GAME_BUTTON_GREEN = new GameButton(((ImageButton) findViewById(R.id.btnGreen)), SOUND_EFFECT_BLUE, R.color.btnBlue, R.color.btnBlueHighlight);
-            GAME_BUTTON_YELLOW = new GameButton(((ImageButton) findViewById(R.id.btnYellow)), SOUND_EFFECT_BLUE, R.color.btnBlue, R.color.btnBlueHighlight);
-        } else {
-		    // Setup for button color, highlighting, and sound
-            GAME_BUTTON_BLUE = new GameButton(((ImageButton) findViewById(R.id.btnBlue)), SOUND_EFFECT_BLUE, R.color.btnBlue, R.color.btnBlueHighlight);
-            GAME_BUTTON_RED = new GameButton(((ImageButton) findViewById(R.id.btnRed)), SOUND_EFFECT_RED, R.color.btnRed, R.color.btnRedHighlight);
-            GAME_BUTTON_GREEN = new GameButton(((ImageButton) findViewById(R.id.btnGreen)), SOUND_EFFECT_GREEN, R.color.btnGreen, R.color.btnGreenHighlight);
-            GAME_BUTTON_YELLOW = new GameButton(((ImageButton) findViewById(R.id.btnYellow)), SOUND_EFFECT_YELLOW, R.color.btnYellow, R.color.btnYellowHighlight);
-        }
+		// Setup for button color, highlighting, and sound
+		GAME_BUTTON_BLUE = new GameButton(((ImageButton) findViewById(R.id.btnBlue)), SOUND_EFFECT_BLUE, R.color.colorSurpriseBase, R.color.colorSurpriseHighlight);
+		GAME_BUTTON_RED = new GameButton(((ImageButton) findViewById(R.id.btnRed)), SOUND_EFFECT_BLUE, R.color.colorSurpriseBase, R.color.colorSurpriseHighlight);
+		GAME_BUTTON_GREEN = new GameButton(((ImageButton) findViewById(R.id.btnGreen)), SOUND_EFFECT_BLUE, R.color.colorSurpriseBase, R.color.colorSurpriseHighlight);
+		GAME_BUTTON_YELLOW = new GameButton(((ImageButton) findViewById(R.id.btnYellow)), SOUND_EFFECT_BLUE, R.color.colorSurpriseBase, R.color.colorSurpriseHighlight);
 
-            // Create the listeners for Game buttons. Assign sound effect appropriately
-            // Need to put these in onResume since the soundpool wouldn't have been created until now
-            GAME_BUTTON_BLUE.getImageButton().setOnClickListener(new GameButtonListener(GAME_BUTTON_BLUE));
-            GAME_BUTTON_GREEN.getImageButton().setOnClickListener(new GameButtonListener(GAME_BUTTON_GREEN));
-            GAME_BUTTON_RED.getImageButton().setOnClickListener(new GameButtonListener(GAME_BUTTON_RED));
-            GAME_BUTTON_YELLOW.getImageButton().setOnClickListener(new GameButtonListener(GAME_BUTTON_YELLOW));
+
+		// Create the listeners for Game buttons. Assign sound effect appropriately
+		// Need to put these in onResume since the soundpool wouldn't have been created until now
+		GAME_BUTTON_BLUE.getImageButton().setOnClickListener(new SurpriseSimon.GameButtonListener(GAME_BUTTON_BLUE));
+		GAME_BUTTON_GREEN.getImageButton().setOnClickListener(new SurpriseSimon.GameButtonListener(GAME_BUTTON_GREEN));
+		GAME_BUTTON_RED.getImageButton().setOnClickListener(new SurpriseSimon.GameButtonListener(GAME_BUTTON_RED));
+		GAME_BUTTON_YELLOW.getImageButton().setOnClickListener(new SurpriseSimon.GameButtonListener(GAME_BUTTON_YELLOW));
 	}
 
 	/**
@@ -119,13 +116,13 @@ public class ClassicSimon extends Game
 		// Initiate the game sequence
 		super.addToGameSequence(1);
 		// Play the sequence for the user
-		PlaySequence playSequence = new PlaySequence(getGameSequence());
+		SurpriseSimon.PlaySequence playSequence = new SurpriseSimon.PlaySequence(getGameSequence());
 		playSequence.execute();
 	}
 
 	/**
 	 * Begin logic when a game is finished.
-     * Displays messages and saves the high score
+	 * Displays messages and saves the high score
 	 */
 	private void gameOver()
 	{
@@ -133,11 +130,12 @@ public class ClassicSimon extends Game
 		Toast.makeText(this, "Game Over!", Toast.LENGTH_SHORT).show();
 
 		// If current score is greater than the set high score, update the new high score
-        if (getScore() > savedHighScore) {
-            saveHighScore();
-            loadHighScore();
-            updateHighScoreTextView();
-        }
+		if (getScore() > savedHighScore)
+		{
+			saveHighScore();
+			loadHighScore();
+			updateHighScoreTextView();
+		}
 
 
 		super.endGame();
@@ -213,7 +211,7 @@ public class ClassicSimon extends Game
 			if (isGameStarted())
 			{
 				// Run thread for button sound and highlight
-				GameButtonPress gameButtonPress = new GameButtonPress();
+				SurpriseSimon.GameButtonListener.GameButtonPress gameButtonPress = new SurpriseSimon.GameButtonListener.GameButtonPress();
 				gameButtonPress.execute();
 
 				// Retrieve button "tag"
@@ -250,7 +248,7 @@ public class ClassicSimon extends Game
 					getUserSequence().clear();
 
 					// Play game sequence
-					PlaySequence playSequence = new PlaySequence(getGameSequence());
+					SurpriseSimon.PlaySequence playSequence = new SurpriseSimon.PlaySequence(getGameSequence());
 					playSequence.execute();
 				}
 			}
@@ -384,36 +382,39 @@ public class ClassicSimon extends Game
 		}
 	}
 
-    /**
-     * Using SharedPreferences it saves the high score
-     */
-	private void saveHighScore() {
+	/**
+	 * Using SharedPreferences it saves the high score
+	 */
+	private void saveHighScore()
+	{
 
-	    SharedPreferences sharedPreferences = getSharedPreferences(highScorePref, MODE_PRIVATE);
-	    SharedPreferences.Editor editor = sharedPreferences.edit();
+		SharedPreferences sharedPreferences = getSharedPreferences(highScorePref, MODE_PRIVATE);
+		SharedPreferences.Editor editor = sharedPreferences.edit();
 
-	    editor.putInt(highScoreKey, getScore());
-	    editor.apply();
-    }
+		editor.putInt(highScoreKey, getScore());
+		editor.apply();
+	}
 
-    /**
-     * Loads the highest score that has been set
-     */
-    private void loadHighScore() {
+	/**
+	 * Loads the highest score that has been set
+	 */
+	private void loadHighScore()
+	{
 
-        SharedPreferences sharedPreferences = getSharedPreferences(highScorePref, MODE_PRIVATE);
-        savedHighScore = sharedPreferences.getInt(highScoreKey, 0);
+		SharedPreferences sharedPreferences = getSharedPreferences(highScorePref, MODE_PRIVATE);
+		savedHighScore = sharedPreferences.getInt(highScoreKey, 0);
 
-        // when we want to reset high score Sharedpreferences to test project in simulator
+		// when we want to reset high score Sharedpreferences to test project in simulator
 //        sharedPreferences.edit().clear().commit();
-    }
+	}
 
 
-    /**
-     * Updates the high score TextView to the latest high score
-     */
-    private void updateHighScoreTextView() {
+	/**
+	 * Updates the high score TextView to the latest high score
+	 */
+	private void updateHighScoreTextView()
+	{
 
-	    highScoreTextView.setText("High Score: " + savedHighScore);
-    }
+		highScoreTextView.setText("High Score: " + savedHighScore);
+	}
 }
