@@ -15,13 +15,13 @@
         android:foregroundTintMode="screen"
         android:scaleType="matrix"/>
         <!-- TODO: Add an image
-        android:src="@drawable/circles_bg" -->
+        // android:src="@drawable/" -->
 
 
     <TextView
         android:id="@+id/textView"
-        android:layout_width="123dp"
-        android:layout_height="41dp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
         android:layout_marginEnd="8dp"
         android:layout_marginStart="8dp"
         android:layout_marginTop="8dp"
@@ -32,9 +32,8 @@
         android:shadowDy="15"
         android:shadowRadius="20"
         android:text="Simon"
-        android:textAlignment="center"
         android:textColor="@color/colorPrimaryPink"
-        android:textSize="24sp"
+        android:textSize="35sp"
         android:textStyle="bold"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -43,11 +42,12 @@
     <Button
         android:id="@+id/button_classic"
         android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:layout_marginEnd="64dp"
-        android:layout_marginStart="64dp"
-        android:layout_marginTop="10dp"
-        android:text="Original"
+        android:layout_height="40sp"
+        android:layout_marginEnd="100dp"
+        android:layout_marginStart="100dp"
+        android:layout_marginTop="20dp"
+        android:text="Classic"
+        android:textSize="14sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/textView" />
@@ -55,11 +55,12 @@
     <Button
         android:id="@+id/button_rewind"
         android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="64dp"
+        android:layout_height="40sp"
+        android:layout_marginEnd="8dp"
+        android:layout_marginStart="100dp"
         android:layout_marginTop="8dp"
-        android:text="FirstVariation"
-        android:textSize="12sp"
+        android:text="Rewind"
+        android:textSize="14sp"
         app:layout_constraintEnd_toStartOf="@+id/button_surprise"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/button_classic" />
@@ -67,22 +68,23 @@
     <Button
         android:id="@+id/button_surprise"
         android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:layout_marginEnd="64dp"
+        android:layout_height="40sp"
+        android:layout_marginEnd="100dp"
+        android:layout_marginStart="8dp"
         android:layout_marginTop="8dp"
-        android:text="SecondVariation"
-        android:textSize="12sp"
+        android:text="Surprise"
+        android:textSize="14sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toEndOf="@+id/button_rewind"
         app:layout_constraintTop_toBottomOf="@+id/button_classic" />
 
     <Button
         android:id="@+id/button_rules"
-        android:layout_width="192dp"
-        android:layout_height="37dp"
+        android:layout_width="0dp"
+        android:layout_height="40sp"
         android:layout_marginEnd="8dp"
         android:layout_marginStart="100dp"
-        android:layout_marginTop="8dp"
+        android:layout_marginTop="10dp"
         android:text="Rules"
         app:layout_constraintEnd_toStartOf="@+id/button_about"
         app:layout_constraintStart_toStartOf="parent"
@@ -90,50 +92,30 @@
 
     <Button
         android:id="@+id/button_about"
-        android:layout_width="191dp"
-        android:layout_height="38dp"
+        android:layout_width="0dp"
+        android:layout_height="40sp"
         android:layout_marginEnd="100dp"
-        android:layout_marginTop="8dp"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="10dp"
         android:text="About"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/button_rules"
         app:layout_constraintTop_toBottomOf="@+id/button_surprise" />
 
-    <LinearLayout
+    <TextView
+        android:id="@+id/textView10"
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginBottom="8dp"
+        android:layout_height="30dp"
+        android:layout_marginBottom="30dp"
         android:layout_marginEnd="8dp"
         android:layout_marginStart="8dp"
-        android:layout_marginTop="8dp"
-        android:background="#c0c0c0 "
-        android:orientation="vertical"
-        android:padding="8dp"
+        android:layout_marginTop="40dp"
+        android:text="@string/footerDescription"
+        android:textSize="20sp"
+        android:textStyle="bold"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/button_about"
-        app:layout_constraintVertical_bias="0.0">
-
-        <Switch
-            android:id="@+id/switch_sound"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:checked="true"
-            android:text="Sound:  "
-            android:textSize="24sp" />
-
-        <TextView
-            android:id="@+id/textview_maxScore"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:text="High Score: "
-            android:textAlignment="center"
-            android:textSize="20sp"
-            tools:layout_editor_absoluteX="133dp"
-            tools:layout_editor_absoluteY="0dp" />
-
-    </LinearLayout>
+        app:layout_constraintTop_toBottomOf="@+id/button_rules" />
 
 </android.support.constraint.ConstraintLayout>
