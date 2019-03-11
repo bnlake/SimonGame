@@ -246,6 +246,9 @@ public class SurpriseSimon extends Game
 
 					// Clear user sequence
 					getUserSequence().clear();
+					// Pause for a moment to make user aware of next round
+					PauseGame pauseGame = new PauseGame();
+					pauseGame.execute();
 
 					// Play game sequence
 					SurpriseSimon.PlaySequence playSequence = new SurpriseSimon.PlaySequence(getGameSequence());
@@ -266,6 +269,11 @@ public class SurpriseSimon extends Game
 			{
 				try
 				{
+					// Store current game speed
+					float x = GAME_SPEED;
+					// Speed up the game
+					setGameSpeed(4.0f);
+
 					runOnUiThread(new Runnable()
 					{
 						@Override
@@ -289,7 +297,8 @@ public class SurpriseSimon extends Game
 					});
 					// Pause for a moment without highlight
 					Thread.sleep(((Float) ((2 * (GAME_INTERVAL_TIME / 3)) / GAME_SPEED)).longValue());
-
+					// Restore the game speed
+					setGameSpeed(x);
 				} catch (InterruptedException e)
 				{
 					Log.i("4020debug", "Thread was interrupted");
