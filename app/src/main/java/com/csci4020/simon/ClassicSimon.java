@@ -249,6 +249,10 @@ public class ClassicSimon extends Game
 					// Clear user sequence
 					getUserSequence().clear();
 
+					// Pause for a moment to make user aware of next round
+					PauseGame pauseGame = new PauseGame();
+					pauseGame.execute();
+
 					// Play game sequence
 					PlaySequence playSequence = new PlaySequence(getGameSequence());
 					playSequence.execute();

@@ -3,6 +3,7 @@ package com.csci4020.simon;
 import android.app.Activity;
 import android.media.AudioAttributes;
 import android.media.SoundPool;
+import android.os.AsyncTask;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
@@ -338,5 +339,36 @@ public abstract class Game extends Activity
 	{
 		findViewById(R.id.btnStartGame).setVisibility(View.VISIBLE);
 		this.setGameStarted(false);
+	}
+
+
+	/**
+	 * Class to assist in pausing a main ui game
+	 */
+	protected class PauseGame extends AsyncTask<Void, Void, Void>
+	{
+		@Override
+		protected Void doInBackground(Void... voids)
+		{
+			try
+			{
+				Thread.sleep(GAME_INTERVAL_TIME);
+
+				runOnUiThread(new Runnable()
+				{
+					@Override
+					public void run()
+					{
+						// NULL FUNCTION TO PREVENT RUN OFF
+					}
+				});
+
+				Thread.sleep(GAME_INTERVAL_TIME);
+			} catch (InterruptedException e)
+			{
+				Log.w("4020debug","Pause game thread was interrupted");
+			}
+			return null;
+		}
 	}
 }
