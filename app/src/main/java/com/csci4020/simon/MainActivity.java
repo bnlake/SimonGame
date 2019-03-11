@@ -68,7 +68,7 @@ public class MainActivity extends Activity
             public void onClick(View v) {
 
                 gameMode = REWIND_GAME;
-                startActivity(new Intent(getApplicationContext(), ClassicSimon.class));
+                startActivity(new Intent(getApplicationContext(), ReverseSimon.class));
             }
         });
 	}

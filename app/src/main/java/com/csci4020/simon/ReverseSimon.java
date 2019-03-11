@@ -222,7 +222,7 @@ public class ReverseSimon extends Game
 				{
 
 					// if position n matches in both sequences
-					if (getUserSequenceChar(getUserSequence().size() - 1) == getGameSequenceChar(getUserSequence().size() - 1))
+					if (getUserSequenceChar(getUserSequence().size() - 1) == getGameSequenceChar(getGameSequence().size() - getUserSequence().size()))
 					{
 
 						// do nothing
