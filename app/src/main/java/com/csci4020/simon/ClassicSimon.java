@@ -268,6 +268,11 @@ public class ClassicSimon extends Game
 			{
 				try
 				{
+					// Store current game speed
+					float x = GAME_SPEED;
+					// Speed up the game
+					setGameSpeed(4.0f);
+
 					runOnUiThread(new Runnable()
 					{
 						@Override
@@ -291,6 +296,8 @@ public class ClassicSimon extends Game
 					});
 					// Pause for a moment without highlight
 					Thread.sleep(((Float) ((2 * (GAME_INTERVAL_TIME / 3)) / GAME_SPEED)).longValue());
+					// Restore the game speed
+					setGameSpeed(x);
 
 				} catch (InterruptedException e)
 				{
