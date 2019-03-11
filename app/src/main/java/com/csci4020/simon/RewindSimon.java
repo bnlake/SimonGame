@@ -12,7 +12,7 @@ import android.widget.Toast;
 
 import java.util.LinkedList;
 
-public class ReverseSimon extends Game
+public class RewindSimon extends Game
 {
 
 	// TODO NEED TO FIND A WAY TO STORE NECESSARY INFO FOR APP ROTATIONS
@@ -100,10 +100,10 @@ public class ReverseSimon extends Game
 
 		// Create the listeners for Game buttons. Assign sound effect appropriately
 		// Need to put these in onResume since the soundpool wouldn't have been created until now
-		GAME_BUTTON_BLUE.getImageButton().setOnClickListener(new ReverseSimon.GameButtonListener(GAME_BUTTON_BLUE));
-		GAME_BUTTON_GREEN.getImageButton().setOnClickListener(new ReverseSimon.GameButtonListener(GAME_BUTTON_GREEN));
-		GAME_BUTTON_RED.getImageButton().setOnClickListener(new ReverseSimon.GameButtonListener(GAME_BUTTON_RED));
-		GAME_BUTTON_YELLOW.getImageButton().setOnClickListener(new ReverseSimon.GameButtonListener(GAME_BUTTON_YELLOW));
+		GAME_BUTTON_BLUE.getImageButton().setOnClickListener(new RewindSimon.GameButtonListener(GAME_BUTTON_BLUE));
+		GAME_BUTTON_GREEN.getImageButton().setOnClickListener(new RewindSimon.GameButtonListener(GAME_BUTTON_GREEN));
+		GAME_BUTTON_RED.getImageButton().setOnClickListener(new RewindSimon.GameButtonListener(GAME_BUTTON_RED));
+		GAME_BUTTON_YELLOW.getImageButton().setOnClickListener(new RewindSimon.GameButtonListener(GAME_BUTTON_YELLOW));
 	}
 
 	/**
@@ -115,7 +115,7 @@ public class ReverseSimon extends Game
 		// Initiate the game sequence
 		super.addToGameSequence(1);
 		// Play the sequence for the user
-		ReverseSimon.PlaySequence playSequence = new ReverseSimon.PlaySequence(getGameSequence());
+		RewindSimon.PlaySequence playSequence = new RewindSimon.PlaySequence(getGameSequence());
 		playSequence.execute();
 	}
 
@@ -210,7 +210,7 @@ public class ReverseSimon extends Game
 			if (isGameStarted())
 			{
 				// Run thread for button sound and highlight
-				ReverseSimon.GameButtonListener.GameButtonPress gameButtonPress = new ReverseSimon.GameButtonListener.GameButtonPress();
+				RewindSimon.GameButtonListener.GameButtonPress gameButtonPress = new RewindSimon.GameButtonListener.GameButtonPress();
 				gameButtonPress.execute();
 
 				// Retrieve button "tag"
@@ -247,7 +247,7 @@ public class ReverseSimon extends Game
 					getUserSequence().clear();
 
 					// Play game sequence
-					ReverseSimon.PlaySequence playSequence = new ReverseSimon.PlaySequence(getGameSequence());
+					RewindSimon.PlaySequence playSequence = new RewindSimon.PlaySequence(getGameSequence());
 					playSequence.execute();
 				}
 			}
