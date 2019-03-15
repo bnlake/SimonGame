@@ -1,4 +1,10 @@
 package com.csci4020.simon;
+/**
+ * CSCI 4020
+ * Assignment 2 - Simon
+ * Hannie Kim
+ * Brian Lake
+ */
 
 import android.app.Activity;
 import android.content.Intent;
@@ -8,14 +14,14 @@ import android.view.View;
 public class MainActivity extends Activity
 {
 
-    // MARK: - Properties
-    public static boolean soundOn = true;
+	// MARK: - Properties
+	public static boolean soundOn = true;
 
-    // Game Modes
-    public static String gameMode = "classic";
-    public static final String CLASSIC_GAME = "classic";
-    public static final String SURPRISE_GAME = "surprise";
-    public static final String REWIND_GAME = "rewind";
+	// Game Modes
+	public static String gameMode = "classic";
+	public static final String CLASSIC_GAME = "classic";
+	public static final String SURPRISE_GAME = "surprise";
+	public static final String REWIND_GAME = "rewind";
 
 
 	@Override
@@ -24,62 +30,72 @@ public class MainActivity extends Activity
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_main);
 
-		// TODO CREATE ANON INNER CLASS INSTEAD OF USING THIS CURRENT CLASS ONCLICKLISTENER
+		findViewById(R.id.button_rules).setOnClickListener(new View.OnClickListener()
+		{
+			@Override
+			public void onClick(View v)
+			{
 
-		findViewById(R.id.button_rules).setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-
-                goToRules();
-            }
-        });
+				goToRules();
+			}
+		});
 
 
-		findViewById(R.id.button_about).setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
+		findViewById(R.id.button_about).setOnClickListener(new View.OnClickListener()
+		{
+			@Override
+			public void onClick(View v)
+			{
 
-                goToAbout();
-            }
-        });
+				goToAbout();
+			}
+		});
 
-        findViewById(R.id.button_classic).setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
+		findViewById(R.id.button_classic).setOnClickListener(new View.OnClickListener()
+		{
+			@Override
+			public void onClick(View v)
+			{
 
-                gameMode = CLASSIC_GAME;
-                startActivity(new Intent(getApplicationContext(), ClassicSimon.class));
-            }
-        });
+				gameMode = CLASSIC_GAME;
+				startActivity(new Intent(getApplicationContext(), ClassicSimon.class));
+			}
+		});
 
-        findViewById(R.id.button_surprise).setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
+		findViewById(R.id.button_surprise).setOnClickListener(new View.OnClickListener()
+		{
+			@Override
+			public void onClick(View v)
+			{
 
-                gameMode = SURPRISE_GAME;
-                soundOn = false;
-                startActivity(new Intent(getApplicationContext(), SurpriseSimon.class));
-            }
-        });
+				gameMode = SURPRISE_GAME;
+				soundOn = false;
+				startActivity(new Intent(getApplicationContext(), SurpriseSimon.class));
+			}
+		});
 
-        findViewById(R.id.button_rewind).setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
+		findViewById(R.id.button_rewind).setOnClickListener(new View.OnClickListener()
+		{
+			@Override
+			public void onClick(View v)
+			{
 
-                gameMode = REWIND_GAME;
-                startActivity(new Intent(getApplicationContext(), RewindSimon.class));
-            }
-        });
+				gameMode = REWIND_GAME;
+				startActivity(new Intent(getApplicationContext(), RewindSimon.class));
+			}
+		});
 	}
 
-	private void goToRules() {
+	private void goToRules()
+	{
 
-        startActivity(new Intent(getApplicationContext(), RulesActivity.class));
+		startActivity(new Intent(getApplicationContext(), RulesActivity.class));
 
-    }
+	}
 
-    private void goToAbout() {
+	private void goToAbout()
+	{
 
-        startActivity(new Intent(getApplicationContext(), AboutActivity.class));
-    }
+		startActivity(new Intent(getApplicationContext(), AboutActivity.class));
+	}
 }

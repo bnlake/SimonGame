@@ -1,4 +1,10 @@
 package com.csci4020.simon;
+/**
+ * CSCI 4020
+ * Assignment 2 - Simon
+ * Hannie Kim
+ * Brian Lake
+ */
 
 import java.util.ArrayList;
 import java.util.List;

@@ -1,5 +1,10 @@
 package com.csci4020.simon;
-
+/**
+ * CSCI 4020
+ * Assignment 2 - Simon
+ * Hannie Kim
+ * Brian Lake
+ */
 import android.app.Activity;
 import android.graphics.Color;
 import android.os.Bundle;

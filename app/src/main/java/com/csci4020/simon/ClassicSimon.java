@@ -1,6 +1,10 @@
 package com.csci4020.simon;
-
-import android.content.Context;
+/**
+ * CSCI 4020
+ * Assignment 2 - Simon
+ * Hannie Kim
+ * Brian Lake
+ */
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.AsyncTask;
@@ -40,8 +44,6 @@ public class ClassicSimon extends Game
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_game);
 
-		// TODO NEED TO LOOK FOR BOOLEAN FROM INTENT TO EITHER MUTE THE GAME OR NOT
-		// TODO: - Could possibly use this to separate the different methods and replace needing a boolean for muting the game or not
 		if (MainActivity.gameMode.equals(MainActivity.CLASSIC_GAME))
 		{
 
